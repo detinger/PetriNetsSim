@@ -3,7 +3,6 @@ import {
   ReactFlow,
 
   Controls,
-  MiniMap,
   NodeTypes,
   EdgeTypes,
   addEdge,
@@ -66,7 +65,7 @@ export default function PetriCanvas({
         ...params,
         id: `e-${params.source}-${params.target}-${Date.now()}`,
         type: 'weighted',
-        markerEnd: { type: 'arrowclosed' as any },
+        markerEnd: { type: 'arrowclosed' as any, color: '#2e3440' },
         data: { weight: 1 },
       };
 
@@ -93,14 +92,6 @@ export default function PetriCanvas({
       }}
     >
       <Controls className="bg-nord-4 border-nord-3 fill-nord-0 shadow-lg" />
-      <MiniMap 
-        nodeColor={(n) => {
-          if (n.type === 'place') return '#4c566a'; // nord3
-          return '#3b4252'; // nord1
-        }}
-        className="bg-nord-4 border border-nord-3 shadow-xl font-bold"
-        maskColor="#d8dee9cc"
-      />
     </ReactFlow>
   );
 }

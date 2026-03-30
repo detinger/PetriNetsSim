@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { ReactFlowProvider, Node, Edge, useNodesState, useEdgesState } from '@xyflow/react';
 import PetriCanvas from './components/PetriCanvas';
 import Toolbar from './components/panels/Toolbar';
@@ -16,12 +16,12 @@ export default function App() {
   const [initialEdges, setInitialEdges] = useState<Edge[]>(examples[0].edges);
   
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showAnimations, setShowAnimations] = useState(true);
+  const [showAnimations, setShowAnimations] = useState(false);
   const [log, setLog] = useState<string[]>([]);
   const [history, setHistory] = useState<{ nodes: Node[]; edges: Edge[]; log: string[] }[]>([]);
   const [selectedExampleId, setSelectedExampleId] = useState(examples[0].id);
   const [showProperties, setShowProperties] = useState(true);
-  const [showMatrix, setShowMatrix] = useState(true);
+  const [showMatrix, setShowMatrix] = useState(false);
 
   // Derived Petri Net state with useMemo to ensure stable references
   const { places, transitions, arcs, enabledTransitions, deadlock, netProps } = useMemo(() => {
@@ -196,6 +196,9 @@ export default function App() {
     setLog((prev) => [...prev, `Fired: ${tToFire.name}`]);
   }, [deadlock, enabledTransitions, places, transitions, arcs, setNodes, setEdges, nodes, edges, log, showAnimations]);
 
+  const handleStepRef = useRef<any>(null);
+  handleStepRef.current = handleStep;
+
   const handleStepBack = useCallback(() => {
     if (history.length === 0) return;
     
@@ -207,18 +210,13 @@ export default function App() {
   }, [history]);
 
   useEffect(() => {
-    let timer: any;
-    if (isPlaying) {
-      if (deadlock) {
-        setIsPlaying(false);
-      } else {
-        timer = setTimeout(() => {
-          handleStep();
-        }, 800);
-      }
+    if (isPlaying && !deadlock) {
+      const interval = setInterval(() => {
+        handleStepRef.current();
+      }, 800);
+      return () => clearInterval(interval);
     }
-    return () => clearTimeout(timer);
-  }, [isPlaying, deadlock, handleStep]);
+  }, [isPlaying, deadlock]);
 
   const addPlace = () => {
     const id = `p${Date.now()}`;
