@@ -1,0 +1,220 @@
+{
+  "nodes": [
+    {
+      "id": "w",
+      "type": "place",
+      "position": {
+        "x": 272.31408341738967,
+        "y": 111.48120024977229
+      },
+      "data": {
+        "name": "Working",
+        "tokens": 3,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t1",
+      "type": "transition",
+      "position": {
+        "x": 426.36183108378475,
+        "y": 180.40957875017975
+      },
+      "data": {
+        "name": "Break",
+        "isEnabled": true,
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "b",
+      "type": "place",
+      "position": {
+        "x": 563.5153683334132,
+        "y": 164.86690516675452
+      },
+      "data": {
+        "name": "Broken",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t2",
+      "type": "transition",
+      "position": {
+        "x": 703.3719792497244,
+        "y": 162.16383150007192
+      },
+      "data": {
+        "name": "Repair",
+        "isEnabled": false,
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64,
+        "labelOffset": {
+          "x": -43.86948267929256,
+          "y": -14.995403517968953
+        }
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "r",
+      "type": "place",
+      "position": {
+        "x": 612.1706943337008,
+        "y": 285.8088632499161
+      },
+      "data": {
+        "name": "Rep_Idle",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "a1",
+      "source": "w",
+      "target": "t1",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a2",
+      "source": "t1",
+      "target": "b",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a3",
+      "source": "b",
+      "target": "t2",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a4",
+      "source": "r",
+      "target": "t2",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-right",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.5
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t2",
+      "sourceHandle": "source-top",
+      "target": "w",
+      "targetHandle": "target-top",
+      "id": "e-t2-w-1774885879965",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t2",
+      "sourceHandle": "source-bottom",
+      "target": "r",
+      "targetHandle": "target-top",
+      "id": "e-t2-r-1774885911737",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2026-03-30T15:52:47.839Z",
+    "name": "machine-repair"
+  }
+}

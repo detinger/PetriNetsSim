@@ -1,0 +1,235 @@
+{
+  "nodes": [
+    {
+      "id": "t1",
+      "type": "transition",
+      "position": {
+        "x": 124,
+        "y": 149.5
+      },
+      "data": {
+        "name": "Arrival",
+        "isEnabled": true
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "q",
+      "type": "place",
+      "position": {
+        "x": 267,
+        "y": 153
+      },
+      "data": {
+        "name": "Queue",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t2",
+      "type": "transition",
+      "position": {
+        "x": 450,
+        "y": 150
+      },
+      "data": {
+        "name": "Serve",
+        "isEnabled": false,
+        "labelOffset": {
+          "x": -0.11029411107301712,
+          "y": -93.27205326408148
+        }
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false
+    },
+    {
+      "id": "p_proc",
+      "type": "place",
+      "position": {
+        "x": 583.5,
+        "y": 155
+      },
+      "data": {
+        "name": "In_Proc",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t3",
+      "type": "transition",
+      "position": {
+        "x": 749,
+        "y": 150.5
+      },
+      "data": {
+        "name": "Complete",
+        "isEnabled": false,
+        "labelOffset": {
+          "x": -3.3088233321905136,
+          "y": -96.56249424442649
+        }
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "s",
+      "type": "place",
+      "position": {
+        "x": 285.5,
+        "y": 352
+      },
+      "data": {
+        "name": "Server_Idle",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "t1",
+      "target": "q",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0
+      }
+    },
+    {
+      "id": "e2",
+      "source": "q",
+      "target": "t2",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0
+      }
+    },
+    {
+      "id": "e4",
+      "source": "t2",
+      "target": "p_proc",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0
+      }
+    },
+    {
+      "id": "e5",
+      "source": "p_proc",
+      "target": "t3",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t3",
+      "sourceHandle": "source-bottom",
+      "target": "s",
+      "targetHandle": "target-right",
+      "id": "e-t3-s-1774886928291",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "s",
+      "sourceHandle": "source-top",
+      "target": "t2",
+      "targetHandle": "target-bottom",
+      "id": "e-s-t2-1774886933838",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2026-03-30T16:09:30.032Z",
+    "name": "service-queue"
+  }
+}
