@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Handle, Position, useReactFlow } from '@xyflow/react';
+import { useEffect, useState } from 'react';
+import { Handle, Position, useReactFlow, useUpdateNodeInternals } from '@xyflow/react';
 import { clsx } from 'clsx';
 import { NetTransition } from '../../lib/types';
 
@@ -13,6 +13,17 @@ export default function TransitionNode({
   selected?: boolean;
 }) {
   const { updateNodeData } = useReactFlow();
+  const updateNodeInternals = useUpdateNodeInternals();
+
+  useEffect(() => {
+    updateNodeData(id, {
+      shapeType: 'rect',
+      shapeWidth: 24,
+      shapeHeight: 64,
+    });
+  }, [id, updateNodeData]);
+
+
   const [isDragging, setIsDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
@@ -28,8 +39,8 @@ export default function TransitionNode({
     const dx = e.clientX - startPos.x;
     const dy = e.clientY - startPos.y;
     const currentOffset = data.labelOffset || { x: 0, y: 0 };
-    updateNodeData(id, { 
-      labelOffset: { x: currentOffset.x + dx, y: currentOffset.y + dy } 
+    updateNodeData(id, {
+      labelOffset: { x: currentOffset.x + dx, y: currentOffset.y + dy }
     });
     setStartPos({ x: e.clientX, y: e.clientY });
   };
@@ -53,13 +64,13 @@ export default function TransitionNode({
       {/* Bottom Bidirectional Handles */}
       <Handle type="target" position={Position.Bottom} id="target-bottom" className="!w-2 !h-2 !bg-nord-14 !border-none transition-transform hover:scale-150 z-50 shadow-sm" />
       <Handle type="source" position={Position.Bottom} id="source-bottom" className="!w-2 !h-2 !bg-nord-14 !border-none transition-transform hover:scale-150 z-50 shadow-sm" />
-      
+
       <div className="flex flex-col items-center justify-center gap-1 relative">
         <div
           className={clsx(
             'w-6 h-16 rounded-sm border-[3px] shadow-xl transition-all duration-200',
-            data.isEnabled ? 'bg-nord-14 border-nord-14 ring-4 ring-nord-14/20 animate-pulse' : 'bg-nord-2 border-nord-0',
-            selected ? 'ring-2 ring-nord-10' : '',
+            data.isEnabled ? 'bg-nord-14 border-nord-14 animate-pulse' : 'bg-nord-2 border-nord-0',
+            selected ? '' : '',
             'hover:brightness-125'
           )}
         />

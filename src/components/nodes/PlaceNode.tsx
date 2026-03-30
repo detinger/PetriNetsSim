@@ -1,11 +1,22 @@
-import { useState } from 'react';
-import { Handle, Position, useReactFlow } from '@xyflow/react';
+import { useEffect, useState } from 'react';
+import { Handle, Position, useReactFlow, useUpdateNodeInternals } from '@xyflow/react';
 import { clsx } from 'clsx';
 import { NetPlace } from '../../lib/types';
 
 export default function PlaceNode({ id, data, selected }: { id: string; data: NetPlace & { labelOffset?: { x: number; y: number } }; selected?: boolean }) {
   const tokens = data.tokens;
   const { updateNodeData } = useReactFlow();
+  const updateNodeInternals = useUpdateNodeInternals();
+
+  useEffect(() => {
+    updateNodeData(id, {
+      shapeType: 'circle',
+      shapeWidth: 56,
+      shapeHeight: 56,
+    });
+  }, [id, updateNodeData]);
+
+
   const [isDragging, setIsDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
@@ -36,8 +47,8 @@ export default function PlaceNode({ id, data, selected }: { id: string; data: Ne
     const dx = e.clientX - startPos.x;
     const dy = e.clientY - startPos.y;
     const currentOffset = data.labelOffset || { x: 0, y: 0 };
-    updateNodeData(id, { 
-      labelOffset: { x: currentOffset.x + dx, y: currentOffset.y + dy } 
+    updateNodeData(id, {
+      labelOffset: { x: currentOffset.x + dx, y: currentOffset.y + dy }
     });
     setStartPos({ x: e.clientX, y: e.clientY });
   };
@@ -61,12 +72,12 @@ export default function PlaceNode({ id, data, selected }: { id: string; data: Ne
       {/* Bottom Bidirectional Handles */}
       <Handle type="target" position={Position.Bottom} id="target-bottom" className="!w-2 !h-2 !bg-nord-9 !border-none transition-transform hover:scale-150 z-50 shadow-sm" />
       <Handle type="source" position={Position.Bottom} id="source-bottom" className="!w-2 !h-2 !bg-nord-9 !border-none transition-transform hover:scale-150 z-50 shadow-sm" />
-      
+
       <div className="flex flex-col items-center justify-center gap-1">
         <div
           className={clsx(
             'w-14 h-14 rounded-full border-[3px] flex items-center justify-center bg-nord-6 shadow-lg transition-all duration-200 relative overflow-hidden',
-            selected ? 'border-nord-10 ring-2 ring-nord-10/50' : 'border-nord-0',
+            selected ? 'border-nord-10' : 'border-nord-0',
             'hover:border-nord-10 hover:shadow-xl'
           )}
         >
