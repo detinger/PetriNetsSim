@@ -7,3 +7,13 @@
     @apply antialiased m-0 font-sans;
   }
 }
+
+.react-flow__handle {
+  opacity: 0 !important;
+  transition: opacity 0.2s ease-in-out !important;
+}
+
+.react-flow__node:hover .react-flow__handle,
+.react-flow__handle:hover {
+  opacity: 1 !important;
+}
