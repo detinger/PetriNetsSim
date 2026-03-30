@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Handle, Position, useReactFlow, useUpdateNodeInternals } from '@xyflow/react';
+import { Handle, Position, useReactFlow } from '@xyflow/react';
 import { clsx } from 'clsx';
 import { NetTransition } from '../../lib/types';
 
@@ -13,7 +13,6 @@ export default function TransitionNode({
   selected?: boolean;
 }) {
   const { updateNodeData } = useReactFlow();
-  const updateNodeInternals = useUpdateNodeInternals();
 
   useEffect(() => {
     updateNodeData(id, {

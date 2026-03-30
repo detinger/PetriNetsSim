@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Handle, Position, useReactFlow, useUpdateNodeInternals } from '@xyflow/react';
+import { Handle, Position, useReactFlow } from '@xyflow/react';
 import { clsx } from 'clsx';
 import { NetPlace } from '../../lib/types';
 
 export default function PlaceNode({ id, data, selected }: { id: string; data: NetPlace & { labelOffset?: { x: number; y: number } }; selected?: boolean }) {
   const tokens = data.tokens;
   const { updateNodeData } = useReactFlow();
-  const updateNodeInternals = useUpdateNodeInternals();
 
   useEffect(() => {
     updateNodeData(id, {
