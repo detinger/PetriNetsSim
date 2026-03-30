@@ -12,10 +12,10 @@ import { parsePnml } from './lib/pnmlParser';
 export default function App() {
   const [nodes, setNodes] = useNodesState<Node>(examples[0].nodes);
   const [edges, setEdges] = useEdgesState<Edge>(examples[0].edges);
-  
+
   const [initialNodes, setInitialNodes] = useState<Node[]>(examples[0].nodes);
   const [initialEdges, setInitialEdges] = useState<Edge[]>(examples[0].edges);
-  
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAnimations, setShowAnimations] = useState(false);
   const [log, setLog] = useState<string[]>([]);
@@ -28,19 +28,19 @@ export default function App() {
   const { places, transitions, arcs, enabledTransitions, deadlock, netProps } = useMemo(() => {
     const p: NetPlace[] = nodes
       .filter((n) => n.type === 'place')
-      .map((n) => ({ 
-        id: n.id, 
-        name: (n.data?.name as string) || n.id, 
-        tokens: Number(n.data?.tokens) || 0 
+      .map((n) => ({
+        id: n.id,
+        name: (n.data?.name as string) || n.id,
+        tokens: Number(n.data?.tokens) || 0
       }));
-      
+
     const t: NetTransition[] = nodes
       .filter((n) => n.type === 'transition')
-      .map((n) => ({ 
-        id: n.id, 
-        name: (n.data?.name as string) || n.id 
+      .map((n) => ({
+        id: n.id,
+        name: (n.data?.name as string) || n.id
       }));
-      
+
     const a: NetArc[] = edges.map((e) => ({
       id: e.id,
       source: e.source,
@@ -53,10 +53,10 @@ export default function App() {
 
     const initialPlaces: NetPlace[] = initialNodes
       .filter((n) => n.type === 'place')
-      .map((n) => ({ 
-        id: n.id, 
-        name: (n.data?.name as string) || n.id, 
-        tokens: Number(n.data?.tokens) || 0 
+      .map((n) => ({
+        id: n.id,
+        name: (n.data?.name as string) || n.id,
+        tokens: Number(n.data?.tokens) || 0
       }));
 
     const netProps = analyzeNet(p, initialPlaces, t, a);
@@ -120,7 +120,7 @@ export default function App() {
       setInitialNodes(nodes);
       setInitialEdges(edges);
     }
-  }, [JSON.stringify(nodes), JSON.stringify(edges)]); 
+  }, [JSON.stringify(nodes), JSON.stringify(edges)]);
 
   const handleStep = useCallback(() => {
     if (deadlock) {
@@ -132,12 +132,12 @@ export default function App() {
     setHistory((prev) => [...prev, { nodes, edges, log }]);
 
     const tToFire = enabledTransitions[Math.floor(Math.random() * enabledTransitions.length)];
-    
+
     // Logic for Flow Animation (Two-Phase with physical token subtraction/addition)
     if (showAnimations) {
       const inArcIds = edges.filter(e => e.target === tToFire.id).map(e => e.id);
       const outArcIds = edges.filter(e => e.source === tToFire.id).map(e => e.id);
-      
+
       // Get participating places and how many tokens they contribute/receive
       const inArcsFromPlaces = arcs.filter(a => a.target === tToFire.id);
       const outArcsToPlaces = arcs.filter(a => a.source === tToFire.id);
@@ -153,7 +153,7 @@ export default function App() {
 
       // 2. Start Phase 1 Animation
       setEdges(eds => eds.map(e => inArcIds.includes(e.id) ? { ...e, data: { ...e.data, isFiring: true } } : e));
-      
+
       setTimeout(() => {
         // 3. Stop Phase 1, Start Phase 2
         setEdges(eds => eds.map(e => {
@@ -174,9 +174,9 @@ export default function App() {
             }
             return n;
           }));
-          
+
           setEdges(eds => eds.map(e => ({ ...e, data: { ...e.data, isFiring: false } })));
-          
+
           setLog((prev) => [
             `${tToFire.name} fired at ${new Date().toLocaleTimeString()}`,
             ...prev.slice(0, 49),
@@ -193,7 +193,7 @@ export default function App() {
         return n;
       }));
     }
-    
+
     setLog((prev) => [...prev, `Fired: ${tToFire.name}`]);
   }, [deadlock, enabledTransitions, places, transitions, arcs, setNodes, setEdges, nodes, edges, log, showAnimations]);
 
@@ -202,7 +202,7 @@ export default function App() {
 
   const handleStepBack = useCallback(() => {
     if (history.length === 0) return;
-    
+
     const lastState = history[history.length - 1];
     setNodes(lastState.nodes);
     setEdges(lastState.edges);
@@ -248,15 +248,15 @@ export default function App() {
     <div className="w-screen h-screen flex flex-col bg-nord-0 text-white font-sans">
       <header className="p-4 bg-nord-0 border-b border-nord-1 flex justify-between items-center z-10 shadow-lg">
         <h1 className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-nord-8 to-nord-9 bg-clip-text text-transparent">
-          AdamSim | Petri Nets Simulator
+          Petri Nets Simulator
         </h1>
         <div className="flex gap-4 items-center">
           <div className="flex gap-2">
             <button
               onClick={() => {
                 try {
-                  const data = JSON.stringify({ 
-                    nodes, 
+                  const data = JSON.stringify({
+                    nodes,
                     edges,
                     metadata: {
                       version: "1.0",
@@ -264,7 +264,7 @@ export default function App() {
                       name: selectedExampleId || 'custom-model'
                     }
                   }, null, 2);
-                  
+
                   const fileName = `petri-net-${(selectedExampleId || 'model').replace(/[^a-z0-9]/gi, '-')}.json`;
 
                   // 1. Try modern File System Access API (Native Chrome 'Save As' dialog)
@@ -354,7 +354,7 @@ export default function App() {
               />
             </label>
           </div>
-          <select 
+          <select
             value={selectedExampleId}
             onChange={(e) => loadExample(e.target.value)}
             className="bg-nord-1 border border-nord-3 text-nord-4 rounded px-3 py-1.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-nord-8/50 transition-all cursor-pointer"
@@ -368,11 +368,11 @@ export default function App() {
 
       <main className="flex-1 flex overflow-hidden bg-nord-0">
         <aside className="w-64 border-r border-nord-1 bg-nord-0 p-6 flex flex-col gap-6 shadow-2xl z-10 transition-colors">
-          <Toolbar 
-            addPlace={addPlace} 
-            addTransition={addTransition} 
-            isPlaying={isPlaying} 
-            onPlay={() => setIsPlaying(!isPlaying)} 
+          <Toolbar
+            addPlace={addPlace}
+            addTransition={addTransition}
+            isPlaying={isPlaying}
+            onPlay={() => setIsPlaying(!isPlaying)}
             onStep={handleStep}
             onStepBack={handleStepBack}
             onReset={handleReset}
@@ -401,18 +401,18 @@ export default function App() {
         <section className="flex-1 bg-nord-0 relative overflow-hidden">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#4c566a33_1px,transparent_1px),linear-gradient(to_bottom,#4c566a33_1px,transparent_1px)] bg-[size:40px_40px]"></div>
           <ReactFlowProvider>
-            <PetriCanvas 
-              nodes={nodes} 
-              edges={edges} 
-              setNodes={setNodes} 
-              setEdges={setEdges} 
+            <PetriCanvas
+              nodes={nodes}
+              edges={edges}
+              setNodes={setNodes}
+              setEdges={setEdges}
             />
           </ReactFlowProvider>
         </section>
 
         {showProperties && (
           <aside className="w-80 border-l border-nord-1 bg-nord-0 p-6 shadow-2xl z-10 overflow-y-auto transition-colors animate-in slide-in-from-right-8">
-            <PropertiesPanel 
+            <PropertiesPanel
               selectedNodes={selectedNodes}
               selectedEdges={selectedEdges}
               setNodes={setNodes}
@@ -424,7 +424,7 @@ export default function App() {
 
         {showMatrix && (
           <aside className="w-[340px] border-l border-nord-1 bg-nord-0 p-6 shadow-2xl z-10 overflow-y-auto transition-colors animate-in slide-in-from-right-8">
-            <MatrixPanel 
+            <MatrixPanel
               places={places}
               transitions={transitions}
               arcs={arcs}

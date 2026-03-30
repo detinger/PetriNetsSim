@@ -1,0 +1,429 @@
+{
+  "nodes": [
+    {
+      "id": "c_i",
+      "type": "place",
+      "position": {
+        "x": 39.83437974926903,
+        "y": -25.182631250299572
+      },
+      "data": {
+        "name": "Client_Idle",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56,
+        "labelOffset": {
+          "x": -46.50275458116084,
+          "y": -1.5992646105587482
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t1",
+      "type": "transition",
+      "position": {
+        "x": 250,
+        "y": 100
+      },
+      "data": {
+        "name": "Send_Req",
+        "isEnabled": true
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      }
+    },
+    {
+      "id": "c_w",
+      "type": "place",
+      "position": {
+        "x": 398.5,
+        "y": 104
+      },
+      "data": {
+        "name": "Wait_Reply",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "n_q",
+      "type": "place",
+      "position": {
+        "x": 327.82258891717396,
+        "y": 215.8088632499161
+      },
+      "data": {
+        "name": "Net_Req_Queue",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t2",
+      "type": "transition",
+      "position": {
+        "x": 156.5,
+        "y": 337
+      },
+      "data": {
+        "name": "Start_Proc",
+        "isEnabled": false
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "s_i",
+      "type": "place",
+      "position": {
+        "x": 28.346316665867782,
+        "y": 470.94896700129414
+      },
+      "data": {
+        "name": "Server_Idle",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56,
+        "labelOffset": {
+          "x": -43.49724005442113,
+          "y": -79.69668642617762
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "s_p",
+      "type": "place",
+      "position": {
+        "x": 295,
+        "y": 339.5
+      },
+      "data": {
+        "name": "Processing",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t3",
+      "type": "transition",
+      "position": {
+        "x": 458.5,
+        "y": 335
+      },
+      "data": {
+        "name": "Send_Reply",
+        "isEnabled": false,
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64,
+        "labelOffset": {
+          "x": 44.91727673448622,
+          "y": 0.19761028233915567
+        }
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "n_r",
+      "type": "place",
+      "position": {
+        "x": 641.9728408344916,
+        "y": 221.2150105832814
+      },
+      "data": {
+        "name": "Net_Reply_Queue",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t4",
+      "type": "transition",
+      "position": {
+        "x": 550,
+        "y": 100
+      },
+      "data": {
+        "name": "Recv_Ok",
+        "isEnabled": false,
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "a2",
+      "source": "t1",
+      "target": "c_w",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a6",
+      "source": "t2",
+      "target": "s_p",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a7",
+      "source": "s_p",
+      "target": "t3",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a9",
+      "source": "t3",
+      "target": "n_r",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a11",
+      "source": "c_w",
+      "target": "t4",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t1",
+      "sourceHandle": "source-right",
+      "target": "n_q",
+      "targetHandle": "target-top",
+      "id": "e-t1-n_q-1774885798826",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "n_q",
+      "sourceHandle": "source-left",
+      "target": "t2",
+      "targetHandle": "target-top",
+      "id": "e-n_q-t2-1774885806479",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "n_r",
+      "sourceHandle": "source-top",
+      "target": "t4",
+      "targetHandle": "target-right",
+      "id": "e-n_r-t4-1774886659363",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "c_i",
+      "sourceHandle": "source-bottom",
+      "target": "t1",
+      "targetHandle": "target-left",
+      "id": "e-c_i-t1-1774886669367",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t4",
+      "sourceHandle": "source-top",
+      "target": "c_i",
+      "targetHandle": "target-right",
+      "id": "e-t4-c_i-1774886677783",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "s_i",
+      "sourceHandle": "source-top",
+      "target": "t2",
+      "targetHandle": "target-left",
+      "id": "e-s_i-t2-1774886718124",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t3",
+      "sourceHandle": "source-bottom",
+      "target": "s_i",
+      "targetHandle": "target-right",
+      "id": "e-t3-s_i-1774886731212",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2026-03-30T16:05:45.044Z",
+    "name": "custom"
+  }
+}

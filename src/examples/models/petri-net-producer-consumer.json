@@ -1,0 +1,272 @@
+{
+  "nodes": [
+    {
+      "id": "p1",
+      "type": "place",
+      "position": {
+        "x": 108,
+        "y": 415
+      },
+      "data": {
+        "name": "p_ready",
+        "tokens": 1
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t1",
+      "type": "transition",
+      "position": {
+        "x": 250,
+        "y": 300
+      },
+      "data": {
+        "name": "t_produce",
+        "isEnabled": true,
+        "labelOffset": {
+          "x": -49.995401431806386,
+          "y": -70.51010609138757
+        }
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false
+    },
+    {
+      "id": "p2",
+      "type": "place",
+      "position": {
+        "x": 350,
+        "y": 158.5
+      },
+      "data": {
+        "name": "p_buffer",
+        "tokens": 4
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "p3",
+      "type": "place",
+      "position": {
+        "x": 420,
+        "y": 418.5
+      },
+      "data": {
+        "name": "p_items",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": true,
+      "dragging": false
+    },
+    {
+      "id": "t2",
+      "type": "transition",
+      "position": {
+        "x": 550,
+        "y": 300
+      },
+      "data": {
+        "name": "t_consume",
+        "isEnabled": true,
+        "labelOffset": {
+          "x": 51.38326899614185,
+          "y": -23.226101556792855
+        }
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false
+    },
+    {
+      "id": "p4",
+      "type": "place",
+      "position": {
+        "x": 652.5,
+        "y": 162
+      },
+      "data": {
+        "name": "p_cons_rdy",
+        "tokens": 1,
+        "labelOffset": {
+          "x": 0.914522004313767,
+          "y": -80.45036285184324
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "a4",
+      "source": "t1",
+      "target": "p3",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.5
+      }
+    },
+    {
+      "id": "a8",
+      "source": "t2",
+      "target": "p2",
+      "sourceHandle": "source-left",
+      "targetHandle": "target-right",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.5
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p4",
+      "sourceHandle": "source-left",
+      "target": "t2",
+      "targetHandle": "target-top",
+      "id": "e-p4-t2-1774887355815",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t2",
+      "sourceHandle": "source-right",
+      "target": "p4",
+      "targetHandle": "target-bottom",
+      "id": "e-t2-p4-1774887360250",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t1",
+      "sourceHandle": "source-left",
+      "target": "p1",
+      "targetHandle": "target-top",
+      "id": "e-t1-p1-1774887385901",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p1",
+      "sourceHandle": "source-right",
+      "target": "t1",
+      "targetHandle": "target-bottom",
+      "id": "e-p1-t1-1774887393187",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p2",
+      "sourceHandle": "source-left",
+      "target": "t1",
+      "targetHandle": "target-top",
+      "id": "e-p2-t1-1774887424451",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p3",
+      "sourceHandle": "source-right",
+      "target": "t2",
+      "targetHandle": "target-bottom",
+      "id": "e-p3-t2-1774887444045",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2026-03-30T16:17:55.183Z",
+    "name": "producer-consumer"
+  }
+}

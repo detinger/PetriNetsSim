@@ -1,8 +1,8 @@
-# AdamSim | Petri Nets Simulator
+Petri Nets Simulator
 
-AdamSim is an interactive Petri Net modeling and simulation environment built with React, TypeScript, and React Flow. Patterned after technical drafting interfaces and utilizing the cohesive Nord color palette, AdamSim allows students and educators to build, simulate, and analyze discrete event systems with mathematical precision.
+An interactive Petri Net modeling and simulation environment built with React, TypeScript, and React Flow. Patterned after technical drafting interfaces and utilizing the cohesive Nord color palette, Petri Nets Sim allows students and educators to build, simulate, and analyze discrete event systems with mathematical precision.
 
-> **Note:** AdamSim is an educational tool designed primarily for learning and demonstration purposes. It is not intended for professional-grade or production-critical system modeling.
+> **Note:** This is an educational tool designed primarily for learning and demonstration purposes. It is not intended for professional-grade or production-critical system modeling.
 
 ## 🌟 Key Features
 
@@ -21,7 +21,7 @@ AdamSim is an interactive Petri Net modeling and simulation environment built wi
 
 ### 3. Formal System Analysis
 
-AdamSim acts as a complete mathematical diagnostic suite via two dedicated sidebars (which can be hidden for full-screen modeling):
+Petri Nets Sim acts as a complete mathematical diagnostic suite via two dedicated sidebars (which can be hidden for full-screen modeling):
 
 * **Structural Analysis:** Real-time bounds checking for *Safeness*, *Boundedness*, and *Conservativeness*.
 * **Behavioral Diagnostics:** Evaluates the net for *Liveness*, *Reversibility*, and generic *Deadlock* states.
@@ -32,7 +32,7 @@ AdamSim acts as a complete mathematical diagnostic suite via two dedicated sideb
 
 ### 4. Built-in Example Library
 
-AdamSim comes pre-loaded with structurally perfect, geometrically-aligned examples demonstrating classic concurrency problems:
+Petri Nets Sim comes pre-loaded with structurally perfect, geometrically-aligned examples demonstrating classic concurrency problems:
 
 * Producer-Consumer Problem
 * Mutual Exclusion (Mutex)
@@ -73,7 +73,7 @@ You will need [Node.js](https://nodejs.org/) installed on your machine.
 
 ---
 
-## 📖 How to Use AdamSim
+## 📖 How to Use Petri Nets Sim
 
 ### Building a Model
 

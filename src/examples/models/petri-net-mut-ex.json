@@ -1,0 +1,414 @@
+{
+  "nodes": [
+    {
+      "id": "p1",
+      "type": "place",
+      "position": {
+        "x": 150,
+        "y": 100
+      },
+      "data": {
+        "name": "P1_Idle",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56,
+        "labelOffset": {
+          "x": -46.24080606736243,
+          "y": -5.128676164895296
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false
+    },
+    {
+      "id": "t1",
+      "type": "transition",
+      "position": {
+        "x": 283,
+        "y": 215
+      },
+      "data": {
+        "name": "P1_Enter",
+        "isEnabled": true
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "p2",
+      "type": "place",
+      "position": {
+        "x": 183,
+        "y": 364.5
+      },
+      "data": {
+        "name": "P1_CS",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56,
+        "labelOffset": {
+          "x": 39.522056467831135,
+          "y": -66.60845191217959
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t2",
+      "type": "transition",
+      "position": {
+        "x": 95,
+        "y": 476
+      },
+      "data": {
+        "name": "P1_Exit",
+        "isEnabled": false
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "mutex",
+      "type": "place",
+      "position": {
+        "x": 401.5,
+        "y": 336
+      },
+      "data": {
+        "name": "Mutex",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "p4",
+      "type": "place",
+      "position": {
+        "x": 645.5,
+        "y": 107
+      },
+      "data": {
+        "name": "P2_Idle",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56,
+        "labelOffset": {
+          "x": 45.2435634797439,
+          "y": -7.21507309935987
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t3",
+      "type": "transition",
+      "position": {
+        "x": 549,
+        "y": 214
+      },
+      "data": {
+        "name": "P2_Enter",
+        "isEnabled": true
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "p5",
+      "type": "place",
+      "position": {
+        "x": 626.5,
+        "y": 346
+      },
+      "data": {
+        "name": "P2_CS",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56,
+        "labelOffset": {
+          "x": -48.9705853164196,
+          "y": -54.701283504255116
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t4",
+      "type": "transition",
+      "position": {
+        "x": 742,
+        "y": 485.5
+      },
+      "data": {
+        "name": "P2_Exit",
+        "isEnabled": false,
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "m1",
+      "source": "mutex",
+      "target": "t1",
+      "sourceHandle": "source-left",
+      "targetHandle": "target-right",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.3
+      }
+    },
+    {
+      "id": "m2",
+      "source": "t2",
+      "target": "mutex",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.3
+      }
+    },
+    {
+      "id": "m3",
+      "source": "mutex",
+      "target": "t3",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.3
+      }
+    },
+    {
+      "id": "m4",
+      "source": "t4",
+      "target": "mutex",
+      "sourceHandle": "source-left",
+      "targetHandle": "target-right",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.3
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p1",
+      "sourceHandle": "source-right",
+      "target": "t1",
+      "targetHandle": "target-top",
+      "id": "e-p1-t1-1774887162564",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t1",
+      "sourceHandle": "source-left",
+      "target": "p2",
+      "targetHandle": "target-top",
+      "id": "e-t1-p2-1774887181809",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p2",
+      "sourceHandle": "source-bottom",
+      "target": "t2",
+      "targetHandle": "target-right",
+      "id": "e-p2-t2-1774887188813",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t2",
+      "sourceHandle": "source-top",
+      "target": "p1",
+      "targetHandle": "target-bottom",
+      "id": "e-t2-p1-1774887202193",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p4",
+      "sourceHandle": "source-left",
+      "target": "t3",
+      "targetHandle": "target-top",
+      "id": "e-p4-t3-1774887230573",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t4",
+      "sourceHandle": "source-top",
+      "target": "p4",
+      "targetHandle": "target-bottom",
+      "id": "e-t4-p4-1774887241960",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t3",
+      "sourceHandle": "source-right",
+      "target": "p5",
+      "targetHandle": "target-top",
+      "id": "e-t3-p5-1774887253400",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "p5",
+      "sourceHandle": "source-bottom",
+      "target": "t4",
+      "targetHandle": "target-left",
+      "id": "e-p5-t4-1774887263496",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2026-03-30T16:15:26.603Z",
+    "name": "mut-ex"
+  }
+}

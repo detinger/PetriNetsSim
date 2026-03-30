@@ -1,0 +1,304 @@
+{
+  "nodes": [
+    {
+      "id": "i",
+      "type": "place",
+      "position": {
+        "x": 113,
+        "y": 204
+      },
+      "data": {
+        "name": "Idle",
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56,
+        "labelOffset": {
+          "x": -0.5790440831333399,
+          "y": -80.54687019903213
+        }
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t1",
+      "type": "transition",
+      "position": {
+        "x": 250,
+        "y": 200
+      },
+      "data": {
+        "name": "Coin_In",
+        "isEnabled": true
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      }
+    },
+    {
+      "id": "c1",
+      "type": "place",
+      "position": {
+        "x": 366.5,
+        "y": 204
+      },
+      "data": {
+        "name": "1_Coin",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t2",
+      "type": "transition",
+      "position": {
+        "x": 535.5,
+        "y": 199
+      },
+      "data": {
+        "name": "Coin_In",
+        "isEnabled": false
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "c2",
+      "type": "place",
+      "position": {
+        "x": 667.5,
+        "y": 203
+      },
+      "data": {
+        "name": "2_Coins",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t3",
+      "type": "transition",
+      "position": {
+        "x": 810.5,
+        "y": 200.5
+      },
+      "data": {
+        "name": "Dispense",
+        "isEnabled": false
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "d",
+      "type": "place",
+      "position": {
+        "x": 936,
+        "y": 394
+      },
+      "data": {
+        "name": "Drink_Ready",
+        "tokens": 0,
+        "shapeType": "circle",
+        "shapeWidth": 56,
+        "shapeHeight": 56
+      },
+      "measured": {
+        "width": 56,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "t4",
+      "type": "transition",
+      "position": {
+        "x": 513,
+        "y": 394.5
+      },
+      "data": {
+        "name": "Collect",
+        "isEnabled": false,
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      },
+      "measured": {
+        "width": 24,
+        "height": 64
+      },
+      "selected": false,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "a1",
+      "source": "i",
+      "target": "t1",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a2",
+      "source": "t1",
+      "target": "c1",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a3",
+      "source": "c1",
+      "target": "t2",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a4",
+      "source": "t2",
+      "target": "c2",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a5",
+      "source": "c2",
+      "target": "t3",
+      "sourceHandle": "source-right",
+      "targetHandle": "target-left",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "id": "a7",
+      "source": "d",
+      "target": "t4",
+      "sourceHandle": "source-left",
+      "targetHandle": "target-right",
+      "type": "weighted",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      },
+      "data": {
+        "weight": 1,
+        "curvature": 0.75
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t3",
+      "sourceHandle": "source-right",
+      "target": "d",
+      "targetHandle": "target-top",
+      "id": "e-t3-d-1774887050927",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    },
+    {
+      "type": "weighted",
+      "style": {
+        "strokeWidth": 3
+      },
+      "data": {
+        "weight": 1
+      },
+      "source": "t4",
+      "sourceHandle": "source-left",
+      "target": "i",
+      "targetHandle": "target-bottom",
+      "id": "e-t4-i-1774887066032",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#2e3440"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2026-03-30T16:11:59.541Z",
+    "name": "vending-machine"
+  }
+}
