@@ -103,24 +103,9 @@ export default function PropertiesPanel({
                 className="w-full bg-nord-0 border border-nord-3 text-nord-4 rounded px-3 py-2 text-sm focus:outline-none focus:border-nord-8 transition-colors shadow-inner"
               />
             </div>
-            <div>
-              <div className="flex justify-between items-center mb-2 px-1">
-                <label className="block text-[10px] font-bold uppercase tracking-widest text-nord-3">Curvature</label>
-                <span className="text-[10px] font-mono text-nord-9">{(selectedEdge.data?.curvature as number)?.toFixed(2) || '0.75'}</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="1.5"
-                step="0.05"
-                value={(selectedEdge.data?.curvature as number) ?? 0.75}
-                onChange={(e) => updateEdgeData(selectedEdge.id, { curvature: parseFloat(e.target.value) })}
-                className="w-full accent-nord-8 h-1.5 bg-nord-2 rounded-lg appearance-none cursor-pointer"
-              />
-            </div>
+            
           </div>
         )}
-
         {!selectedNode && !selectedEdge && (
           <div className="bg-nord-1/20 border border-dashed border-nord-3 rounded-lg p-4 text-center">
             <p className="text-nord-3 text-[11px] italic">Select an element to modify properties.</p>
