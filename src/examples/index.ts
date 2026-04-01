@@ -8,6 +8,7 @@ import {
   orderFulfillment,
   studentEnrollment,
   serviceQueue,
+  compensationRequest,
   machineRepair,
   kanbanBoard,
   emptyExample,
@@ -23,6 +24,7 @@ export const examples: PetriNetExample[] = [
   orderFulfillment,
   studentEnrollment,
   serviceQueue,
+  compensationRequest,
   machineRepair,
   kanbanBoard,
 ];
