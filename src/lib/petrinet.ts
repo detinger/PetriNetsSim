@@ -1,5 +1,14 @@
 import { NetArc, NetPlace, NetTransition } from './types';
 
+// Total weight of all arcs from one element to another (duplicate arcs add up)
+function arcWeight(arcs: NetArc[], from: string, to: string): number {
+  let weight = 0;
+  for (const a of arcs) {
+    if (a.source === from && a.target === to) weight += a.weight;
+  }
+  return weight;
+}
+
 // Returns the marking vector (number of tokens in each place, ordered by place index)
 export function getMarkingVector(places: NetPlace[]): number[] {
   return places.map((p) => p.tokens);
@@ -13,12 +22,7 @@ export function getPreIncidenceMatrix(
   transitions: NetTransition[],
   arcs: NetArc[]
 ): number[][] {
-  return places.map((p) =>
-    transitions.map((t) => {
-      const arc = arcs.find((a) => a.source === p.id && a.target === t.id);
-      return arc ? arc.weight : 0;
-    })
-  );
+  return places.map((p) => transitions.map((t) => arcWeight(arcs, p.id, t.id)));
 }
 
 // Post-incidence matrix W+ (places x transitions)
@@ -28,12 +32,7 @@ export function getPostIncidenceMatrix(
   transitions: NetTransition[],
   arcs: NetArc[]
 ): number[][] {
-  return places.map((p) =>
-    transitions.map((t) => {
-      const arc = arcs.find((a) => a.source === t.id && a.target === p.id);
-      return arc ? arc.weight : 0;
-    })
-  );
+  return places.map((p) => transitions.map((t) => arcWeight(arcs, t.id, p.id)));
 }
 
 // Incidence matrix W = W+ - W-
@@ -52,17 +51,9 @@ export function getEnabledTransitions(
   transitions: NetTransition[],
   arcs: NetArc[]
 ): NetTransition[] {
-  return transitions.filter((t) => {
-    // find all input places for this transition
-    const inputArcs = arcs.filter((a) => a.target === t.id);
-    for (const arc of inputArcs) {
-      const sourcePlace = places.find((p) => p.id === arc.source);
-      if (!sourcePlace || sourcePlace.tokens < arc.weight) {
-        return false;
-      }
-    }
-    return true;
-  });
+  return transitions.filter((t) =>
+    places.every((p) => p.tokens >= arcWeight(arcs, p.id, t.id))
+  );
 }
 
 // Fire a transition, returning a new array of places with updated tokens
@@ -78,54 +69,8 @@ export function fireTransition(
     throw new Error(`Transition ${transitionId} is not enabled`);
   }
 
-  const inArcs = arcs.filter((a) => a.source === transitionId || a.target === transitionId);
-
-  return places.map((place) => {
-    let newTokens = place.tokens;
-
-    // input arc (deduct tokens)
-    const inArc = inArcs.find((a) => a.source === place.id && a.target === transitionId);
-    if (inArc) {
-      newTokens -= inArc.weight;
-    }
-
-    // output arc (add tokens)
-    const outArc = inArcs.find((a) => a.source === transitionId && a.target === place.id);
-    if (outArc) {
-      newTokens += outArc.weight;
-    }
-
-    return { ...place, tokens: newTokens };
-  });
-}
-
-// Net analysis structure
-export interface NetProperties {
-  isSafe: boolean;
-  isBounded: boolean;
-  isConservative: boolean;
-  isLive: boolean;
-  hasDeadlock: boolean;
-  isReversible: boolean;
-}
-
-export function analyzeNet(
-  places: NetPlace[],
-  initialPlaces: NetPlace[],
-  transitions: NetTransition[],
-  arcs: NetArc[]
-): NetProperties {
-  const enabled = getEnabledTransitions(places, transitions, arcs);
-  
-  const currentTokens = places.reduce((sum, p) => sum + p.tokens, 0);
-  const initialTokens = initialPlaces.reduce((sum, p) => sum + p.tokens, 0);
-
-  return {
-    isSafe: places.every((p) => p.tokens <= 1),
-    isBounded: currentTokens <= initialTokens, // Heuristic: Bounded if total tokens don't grow
-    isConservative: currentTokens === initialTokens,
-    isLive: transitions.length > 0 && enabled.length === transitions.length,
-    hasDeadlock: transitions.length > 0 && enabled.length === 0,
-    isReversible: JSON.stringify(places.map(p => p.tokens)) === JSON.stringify(initialPlaces.map(p => p.tokens))
-  };
+  return places.map((place) => ({
+    ...place,
+    tokens: place.tokens - arcWeight(arcs, place.id, transitionId) + arcWeight(arcs, transitionId, place.id),
+  }));
 }

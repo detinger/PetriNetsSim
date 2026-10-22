@@ -1,5 +1,13 @@
-import { Circle, Square, Play, StepForward, StepBack, StopCircle, RefreshCcw, Sparkles, Layers, Activity } from 'lucide-react';
-import { clsx } from 'clsx';
+import { Circle, Square, Play, Pause, StepForward, StepBack, RotateCcw, Trash2, Sparkles, PanelRight, Undo2, Redo2, Keyboard } from 'lucide-react';
+import { Tooltip } from '../ui';
+import { MOD_KEY } from '../../lib/shortcuts';
+
+export const SPEEDS = [
+  { label: '0.5×', ms: 1600 },
+  { label: '1×', ms: 800 },
+  { label: '2×', ms: 400 },
+  { label: '4×', ms: 200 },
+];
 
 export default function Toolbar({
   addPlace,
@@ -9,15 +17,22 @@ export default function Toolbar({
   onStepBack,
   onReset,
   onClear,
+  onUndo,
+  onRedo,
+  undoLabel,
+  redoLabel,
+  speed,
+  onSpeedChange,
   showAnimations,
   onToggleAnimations,
-  showProperties,
-  onToggleProperties,
-  showMatrix,
-  onToggleMatrix,
+  showInspector,
+  onToggleInspector,
+  onShowShortcuts,
   isPlaying,
+  isAnimating,
   deadlock,
   historyCount,
+  isEmpty,
 }: {
   addPlace: () => void;
   addTransition: () => void;
@@ -26,138 +41,157 @@ export default function Toolbar({
   onStepBack: () => void;
   onReset: () => void;
   onClear: () => void;
+  onUndo: () => void;
+  onRedo: () => void;
+  undoLabel: string | null;
+  redoLabel: string | null;
+  speed: number;
+  onSpeedChange: (ms: number) => void;
   showAnimations: boolean;
   onToggleAnimations: () => void;
-  showProperties: boolean;
-  onToggleProperties: () => void;
-  showMatrix: boolean;
-  onToggleMatrix: () => void;
+  showInspector: boolean;
+  onToggleInspector: () => void;
+  onShowShortcuts: () => void;
   isPlaying: boolean;
+  isAnimating: boolean;
   deadlock: boolean;
   historyCount: number;
+  isEmpty: boolean;
 }) {
+  const editLocked = isPlaying ? 'Pause the simulation to edit' : null;
+
   return (
-    <div className="flex flex-col gap-8 h-full">
-      <div>
-        <h3 className="text-xs font-bold uppercase tracking-widest text-nord-3 mb-3 border-b border-nord-2 pb-1 flex justify-between items-center">
-          Elements
-        </h3>
-        <div className="flex flex-col gap-2">
-          <button
-            onClick={addPlace}
-            className="flex items-center gap-3 px-3 py-2.5 bg-nord-1 hover:bg-nord-2 border border-nord-3 rounded transition-colors text-nord-4 shadow-sm"
-          >
-            <Circle className="w-4 h-4 text-nord-8" />
-            <span className="text-sm font-medium tracking-wide">Add Place</span>
+    <div className="toolbar" role="toolbar" aria-label="Model and simulation">
+      <div className="toolbar-group" role="group" aria-label="History">
+        <Tooltip label={editLocked ?? (undoLabel ? `Undo ${undoLabel.toLowerCase()}` : 'Nothing to undo')} shortcut={`${MOD_KEY}+Z`} align="start">
+          <button type="button" className="btn btn-icon" onClick={onUndo} disabled={!undoLabel || isPlaying || isAnimating} aria-label="Undo" aria-keyshortcuts="Control+Z Meta+Z">
+            <Undo2 />
           </button>
-          <button
-            onClick={addTransition}
-            className="flex items-center gap-3 px-3 py-2.5 bg-nord-1 hover:bg-nord-2 border border-nord-3 rounded transition-colors text-nord-4 shadow-sm"
-          >
-            <Square className="w-4 h-4 text-nord-14" />
-            <span className="text-sm font-medium tracking-wide">Add Transition</span>
+        </Tooltip>
+        <Tooltip label={editLocked ?? (redoLabel ? `Redo ${redoLabel.toLowerCase()}` : 'Nothing to redo')} shortcut={`${MOD_KEY}+Shift+Z`}>
+          <button type="button" className="btn btn-icon" onClick={onRedo} disabled={!redoLabel || isPlaying || isAnimating} aria-label="Redo" aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z">
+            <Redo2 />
           </button>
-        </div>
+        </Tooltip>
       </div>
 
-      <div>
-        <h3 className="text-xs font-bold uppercase tracking-widest text-nord-3 mb-3 border-b border-nord-2 pb-1 flex justify-between items-center">
-          Simulation
-          {deadlock && <span className="text-nord-11 text-[10px] bg-nord-11/20 px-1 rounded animate-pulse">DEADLOCK</span>}
-        </h3>
-        <div className="flex flex-col gap-2 relative">
+      <span className="toolbar-divider" aria-hidden="true" />
+
+      <div className="toolbar-group" role="group" aria-label="Add elements">
+        <Tooltip label={editLocked ?? 'Add a place in view'} shortcut="P">
+          <button type="button" className="btn" onClick={addPlace} disabled={isPlaying} aria-keyshortcuts="P">
+            <Circle />
+            <span className="btn-label">Add place</span>
+          </button>
+        </Tooltip>
+        <Tooltip label={editLocked ?? 'Add a transition in view'} shortcut="T">
+          <button type="button" className="btn" onClick={addTransition} disabled={isPlaying} aria-keyshortcuts="T">
+            <Square />
+            <span className="btn-label">Add transition</span>
+          </button>
+        </Tooltip>
+      </div>
+
+      <span className="toolbar-divider" aria-hidden="true" />
+
+      <div className="toolbar-group" role="group" aria-label="Simulation">
+        <Tooltip
+          label={deadlock ? 'No transition is enabled' : isPlaying ? 'Pause the simulation' : 'Fire enabled transitions automatically'}
+          shortcut="Shift+Space"
+        >
           <button
+            type="button"
+            className={isPlaying ? 'btn btn-accent' : 'btn btn-primary'}
             onClick={onPlay}
-            disabled={deadlock}
-            className={clsx(
-              "flex items-center gap-3 px-3 py-2.5 rounded border transition-all shadow-sm",
-              isPlaying 
-                ? "bg-nord-11/20 border-nord-11/50 hover:bg-nord-11/30 text-nord-11" 
-                : "bg-nord-14/20 border-nord-14/50 hover:bg-nord-14/30 text-nord-14 disabled:opacity-30",
-            )}
+            disabled={deadlock && !isPlaying}
+            aria-keyshortcuts="Shift+Space"
           >
-            {isPlaying ? <StopCircle className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-            <span className="text-[11px] font-bold uppercase tracking-wider">{isPlaying ? 'Stop' : 'Play'}</span>
+            {isPlaying ? <Pause /> : <Play />}
+            {isPlaying ? 'Pause' : 'Run simulation'}
           </button>
-
+        </Tooltip>
+        <Tooltip label="Undo the last firing" shortcut="B">
           <button
-            onClick={onStep}
-            disabled={isPlaying || deadlock}
-            className="flex items-center gap-3 px-3 py-2.5 bg-nord-8/20 border border-nord-8/50 hover:bg-nord-8/30 text-nord-8 rounded transition-all disabled:opacity-30 shadow-sm"
-          >
-            <StepForward className="w-5 h-5" />
-            <span className="text-[11px] font-bold uppercase tracking-wider">Step Forward</span>
-          </button>
-
-          <button
+            type="button"
+            className="btn btn-icon"
             onClick={onStepBack}
             disabled={isPlaying || historyCount === 0}
-            className="flex items-center gap-3 px-3 py-2.5 bg-nord-9/20 border border-nord-9/50 hover:bg-nord-9/30 text-nord-9 rounded transition-all disabled:opacity-30 shadow-sm"
+            aria-label="Step back"
+            aria-keyshortcuts="B"
           >
-            <StepBack className="w-5 h-5" />
-            <span className="text-[11px] font-bold uppercase tracking-wider">Step Backward</span>
+            <StepBack />
           </button>
-
+        </Tooltip>
+        <Tooltip label={deadlock ? 'No transition is enabled' : 'Fire one enabled transition'} shortcut="Space">
           <button
-            onClick={onReset}
-            className="flex items-center gap-3 px-3 py-2.5 bg-nord-1/50 hover:bg-nord-2/50 border border-nord-3 text-nord-4 rounded transition-all shadow-sm"
+            type="button"
+            className="btn"
+            onClick={onStep}
+            disabled={isPlaying || deadlock || isAnimating}
+            aria-keyshortcuts="Space"
           >
-            <RefreshCcw className="w-5 h-5 text-nord-7" />
-            <span className="text-[11px] font-bold uppercase tracking-wider">Restart Model</span>
+            <StepForward />
+            <span className="btn-label">Step</span>
           </button>
-
-          <button
-            onClick={onClear}
-            className="flex items-center gap-3 px-3 py-2.5 bg-nord-11/10 hover:bg-nord-11/20 border border-nord-11/20 hover:border-nord-11/40 text-nord-11 rounded transition-all shadow-sm"
-          >
-            <StopCircle className="w-5 h-5 text-nord-11/70" />
-            <span className="text-[11px] font-bold uppercase tracking-wider">Clear Canvas</span>
+        </Tooltip>
+        <Tooltip label="Return to the initial marking" shortcut="R">
+          <button type="button" className="btn" onClick={onReset} aria-keyshortcuts="R">
+            <RotateCcw />
+            <span className="btn-label">Reset</span>
           </button>
-        </div>
+        </Tooltip>
+        <select
+          className="select select-sm w-auto"
+          value={speed}
+          onChange={(e) => onSpeedChange(Number(e.target.value))}
+          aria-label="Simulation speed"
+          title="Simulation speed"
+        >
+          {SPEEDS.map(({ label, ms }) => (
+            <option key={ms} value={ms}>{label}</option>
+          ))}
+        </select>
       </div>
 
-      <div>
-        <h3 className="text-xs font-bold uppercase tracking-widest text-nord-3 mb-3 border-b border-nord-2 pb-1">
-          View Controls
-        </h3>
-        <div className="flex flex-col gap-2">
-          <button
-            onClick={onToggleAnimations}
-            className={clsx(
-              "flex items-center gap-3 px-3 py-2 bg-nord-1 hover:bg-nord-2 rounded border transition-colors",
-              showAnimations ? "border-nord-13 text-nord-13" : "border-nord-3 text-nord-3"
-            )}
-            title="Toggle Token Flow Animation"
-          >
-            <Sparkles className={clsx("w-5 h-5", showAnimations && "animate-spin-slow")} />
-            <span className="text-sm font-medium">Auto-Flow: {showAnimations ? 'ON' : 'OFF'}</span>
+      <span className="toolbar-divider" aria-hidden="true" />
+
+      <Tooltip label="Show tokens travelling along arcs when a transition fires">
+        <button
+          type="button"
+          className="btn"
+          aria-pressed={showAnimations}
+          onClick={onToggleAnimations}
+          aria-label="Animate tokens"
+        >
+          <Sparkles />
+          <span className="btn-label" aria-hidden="true">Animate tokens</span>
+        </button>
+      </Tooltip>
+
+      <div className="toolbar-group ml-auto">
+        <Tooltip label={editLocked ?? 'Remove every element from the canvas'} align="end">
+          <button type="button" className="btn btn-ghost btn-danger" onClick={onClear} disabled={isPlaying || isEmpty}>
+            <Trash2 />
+            <span className="btn-label">Clear canvas</span>
           </button>
-          
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              onClick={onToggleProperties}
-              className={clsx(
-                "flex flex-col items-center gap-1.5 px-2 py-2.5 bg-nord-1 hover:bg-nord-2 rounded border transition-colors",
-                showProperties ? "border-nord-10 text-nord-10" : "border-nord-3 text-nord-3"
-              )}
-              title="Toggle Properties Panel"
-            >
-              <Activity className={clsx("w-5 h-5", showProperties && "text-nord-10")} />
-              <span className="text-[9px] font-bold uppercase tracking-wider">Props</span>
-            </button>
-            <button
-              onClick={onToggleMatrix}
-              className={clsx(
-                "flex flex-col items-center gap-1.5 px-2 py-2.5 bg-nord-1 hover:bg-nord-2 rounded border transition-colors",
-                showMatrix ? "border-nord-14 text-nord-14" : "border-nord-3 text-nord-3"
-              )}
-              title="Toggle Matrix View"
-            >
-              <Layers className={clsx("w-5 h-5", showMatrix && "text-nord-14")} />
-              <span className="text-[9px] font-bold uppercase tracking-wider">Matrix</span>
-            </button>
-          </div>
-        </div>
+        </Tooltip>
+        <Tooltip label="Keyboard shortcuts" shortcut="?" align="end">
+          <button type="button" className="btn btn-icon btn-ghost" onClick={onShowShortcuts} aria-label="Keyboard shortcuts" aria-keyshortcuts="Shift+?">
+            <Keyboard />
+          </button>
+        </Tooltip>
+        <Tooltip label={showInspector ? 'Hide inspector' : 'Show inspector'} shortcut="I" align="end">
+          <button
+            type="button"
+            className="btn btn-icon"
+            aria-pressed={showInspector}
+            onClick={onToggleInspector}
+            aria-label="Inspector"
+            aria-keyshortcuts="I"
+          >
+            <PanelRight />
+          </button>
+        </Tooltip>
       </div>
     </div>
   );

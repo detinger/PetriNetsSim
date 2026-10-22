@@ -1,4 +1,5 @@
-import { Node, Edge } from '@xyflow/react';
+import { Node, Edge, MarkerType } from '@xyflow/react';
+import { autoHandles } from './model';
 
 interface PnmlPlace {
   id: string;
@@ -117,15 +118,19 @@ export function parsePnml(xmlText: string): { nodes: Node[]; edges: Edge[] } {
     })),
   ];
 
-  // Build ReactFlow edges
-  const edges: Edge[] = allArcs.map((a) => ({
-    id: a.id,
-    source: a.source,
-    target: a.target,
-    type: 'arc',
-    data: { weight: a.weight, isFiring: false },
-    markerEnd: { type: 'arrowclosed' as any },
-  }));
+  // Build ReactFlow edges; sides face each other along the dominant axis
+  const nodeById = new Map(nodes.map((n) => [n.id, n]));
+  const edges: Edge[] = allArcs
+    .filter((a) => nodeById.has(a.source) && nodeById.has(a.target))
+    .map((a) => ({
+      id: a.id,
+      source: a.source,
+      target: a.target,
+      ...autoHandles(nodeById.get(a.source)!, nodeById.get(a.target)!),
+      type: 'weighted',
+      data: { weight: a.weight },
+      markerEnd: { type: MarkerType.ArrowClosed, color: '#2e3440' },
+    }));
 
   return { nodes, edges };
 }

@@ -17,3 +17,7 @@ obj/
 
 # Environment variables (Sensitive!)
 .env
+
+# Local planning docs
+STYLE.md
+PLAN.md

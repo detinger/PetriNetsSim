@@ -1,54 +1,8 @@
-import {
-  BaseEdge,
-  EdgeLabelRenderer,
-  EdgeProps,
-  getBezierPath,
-  Position,
-  useInternalNode,
-} from '@xyflow/react';
-
-function getCenter(node: any) {
-  const x = node.internals.positionAbsolute.x;
-  const y = node.internals.positionAbsolute.y;
-  const width = node.measured?.width ?? 0;
-  const height = node.measured?.height ?? 0;
-
-  return {
-    x: x + width / 2,
-    y: y + height / 2,
-  };
-}
-
-function getShapeSize(node: any) {
-  const shapeWidth = node.data?.shapeWidth ?? node.measured?.width ?? 0;
-  const shapeHeight = node.data?.shapeHeight ?? node.measured?.height ?? 0;
-
-  return {
-    width: shapeWidth,
-    height: shapeHeight,
-  };
-}
-
-function getSidePoint(node: any, position: Position | undefined) {
-  const center = getCenter(node);
-  const { width, height } = getShapeSize(node);
-
-  const halfW = width / 2;
-  const halfH = height / 2;
-
-  switch (position) {
-    case Position.Left:
-      return { x: center.x - halfW, y: center.y };
-    case Position.Right:
-      return { x: center.x + halfW, y: center.y };
-    case Position.Top:
-      return { x: center.x, y: center.y - halfH };
-    case Position.Bottom:
-      return { x: center.x, y: center.y + halfH };
-    default:
-      return center;
-  }
-}
+import { useRef, useState } from 'react';
+import { BaseEdge, EdgeLabelRenderer, EdgeProps, useInternalNode } from '@xyflow/react';
+import { clsx } from 'clsx';
+import { ARC_CURVATURE, arcPath } from '../../lib/arcGeometry';
+import { useCanvas } from '../CanvasContext';
 
 export default function WeightedArc({
   id,
@@ -56,73 +10,146 @@ export default function WeightedArc({
   target,
   sourcePosition,
   targetPosition,
-  style = {},
   data,
   selected,
-  markerEnd,
 }: EdgeProps) {
   const sourceNode = useInternalNode(source);
   const targetNode = useInternalNode(target);
+  const {
+    isPlaying,
+    firingEdgeIds,
+    firingKey,
+    firingMs,
+    overlappingEdgeIds,
+    hoveredEdgeId,
+    editingEdgeId,
+    setEditingEdgeId,
+    commitWeight,
+  } = useCanvas();
 
   if (!sourceNode || !targetNode) return null;
 
-  const sourcePoint = getSidePoint(sourceNode, sourcePosition);
-  const targetPoint = getSidePoint(targetNode, targetPosition);
-
-  const [edgePath, labelX, labelY] = getBezierPath({
-    sourceX: sourcePoint.x,
-    sourceY: sourcePoint.y,
+  const [edgePath, labelX, labelY, start, end] = arcPath({
+    source: sourceNode,
     sourcePosition,
-    targetX: targetPoint.x,
-    targetY: targetPoint.y,
+    target: targetNode,
     targetPosition,
-    curvature: (data?.curvature as number) ?? 0.75,
+    curvature: (data?.curvature as number) ?? ARC_CURVATURE,
+    parallel: overlappingEdgeIds.has(id),
   });
 
-  const weight = data?.weight as number;
+  const weight = Number(data?.weight) || 1;
+  const editing = editingEdgeId === id;
+  // Weight 1 is implicit; it shows on hover or selection so it's clear the weight can change
+  const showBadge = weight > 1 || selected || hoveredEdgeId === id;
+  const badgeInteractive = weight > 1 || selected;
+
+  // The stored markerEnd carries a fixed colour; draw a themed arrowhead instead
+  const markerId = `petri-arrow-${id.replace(/[^\w-]/g, '_')}`;
 
   return (
     <>
+      <defs>
+        <marker
+          id={markerId}
+          viewBox="0 0 10 10"
+          refX="10"
+          refY="5"
+          markerWidth="10"
+          markerHeight="10"
+          markerUnits="userSpaceOnUse"
+          orient="auto"
+        >
+          <path d="M0 1 L10 5 L0 9 Z" className="petri-arc-arrow" />
+        </marker>
+      </defs>
+
       <BaseEdge
         id={id}
         path={edgePath}
-        markerEnd={markerEnd}
-        style={{
-          strokeWidth: selected ? 4 : 3,
-          stroke: selected ? '#88c0d0' : '#2e3440',
-          filter: selected
-            ? 'drop-shadow(0 0 5px rgba(136,192,208,0.5))'
-            : 'none',
-          ...style,
-        }}
+        markerEnd={`url(#${markerId})`}
+        className="petri-arc"
+        style={{ strokeWidth: selected ? 2.5 : 2 }}
       />
 
-      {data?.isFiring && (
-        <circle key={Date.now()} r="5" fill="#ebcb8b" className="shadow-lg">
-          <animateMotion
-            dur="0.5s"
-            repeatCount="1"
-            path={edgePath}
-            begin="0s"
-            fill="freeze"
-          />
+      {/* Ends of the selected arc can be dragged to another node */}
+      {selected && !isPlaying && (
+        <g className="petri-arc-ends" aria-hidden="true">
+          <circle cx={start.x} cy={start.y} r={4} />
+          <circle cx={end.x} cy={end.y} r={4} />
+        </g>
+      )}
+
+      {firingEdgeIds.has(id) && (
+        <circle key={firingKey} r="5" className="fill-accent stroke-net-fill" strokeWidth={1.5}>
+          <animateMotion dur={`${firingMs}ms`} repeatCount="1" path={edgePath} begin="0s" fill="freeze" />
         </circle>
       )}
 
-      {weight > 1 && (
+      {(showBadge || editing) && (
         <EdgeLabelRenderer>
           <div
             style={{
               position: 'absolute',
               transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-              pointerEvents: 'all',
+              pointerEvents: editing || badgeInteractive ? 'all' : 'none',
             }}
-            className="nodrag nopan bg-nord-6 border border-nord-9 text-nord-0 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-xl border-2"
+            className="nodrag nopan"
           >
-            {weight}
+            {editing ? (
+              <WeightEditor
+                initial={weight}
+                onDone={(value) => {
+                  if (value !== null && value !== weight) commitWeight(id, value);
+                  setEditingEdgeId(null);
+                }}
+              />
+            ) : (
+              <div
+                className={clsx(
+                  'flex h-5 min-w-5 items-center justify-center rounded-full border bg-elevated px-1.5 text-[11px] font-[650] tabular-nums shadow-sm',
+                  selected ? 'border-primary text-primary' : 'border-net-stroke text-fg',
+                  weight === 1 && 'opacity-80'
+                )}
+                title={isPlaying ? `Weight ${weight}` : `Weight ${weight}. Double-click to change it.`}
+                onDoubleClick={() => !isPlaying && setEditingEdgeId(id)}
+              >
+                {weight}
+              </div>
+            )}
           </div>
         </EdgeLabelRenderer>
       )}
     </>
+  );
+}
+
+function WeightEditor({ initial, onDone }: { initial: number; onDone: (value: number | null) => void }) {
+  const [value, setValue] = useState(String(initial));
+  const finished = useRef(false);
+
+  const finish = (commit: boolean) => {
+    if (finished.current) return;
+    finished.current = true;
+    onDone(commit ? Math.max(1, parseInt(value) || 1) : null);
+  };
+
+  return (
+    <input
+      autoFocus
+      type="number"
+      min={1}
+      value={value}
+      aria-label="Arc weight"
+      className="input input-sm w-16 text-center shadow"
+      onFocus={(e) => e.target.select()}
+      onChange={(e) => setValue(e.target.value)}
+      onBlur={() => finish(true)}
+      onKeyDown={(e) => {
+        e.stopPropagation();
+        if (e.key === 'Enter') finish(true);
+        if (e.key === 'Escape') finish(false);
+      }}
+    />
   );
 }

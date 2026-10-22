@@ -23,10 +23,14 @@ export interface PetriNetState {
   arcs: NetArc[];
 }
 
-export interface SimulationLogEntry {
+/** One firing in the simulation log. */
+export interface LogEntry {
+  step: number;
   transitionId: string;
   transitionName: string;
-  timestamp: number;
+  time: number;
+  /** Tokens per place after the firing. */
+  marking: Record<string, number>;
 }
 
 export interface PetriNetExample {
@@ -38,12 +42,4 @@ export interface PetriNetExample {
   arcs: NetArc[];
   nodes: any[];
   edges: any[];
-}
-export interface NetProperties {
-  isSafe: boolean;
-  isBounded: boolean;
-  isConservative: boolean;
-  isLive: boolean;
-  hasDeadlock: boolean;
-  isReversible: boolean;
 }
