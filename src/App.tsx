@@ -12,11 +12,11 @@ import {
   Sun,
   Upload,
   Workflow,
-  Zap,
 } from 'lucide-react';
 import PetriCanvas, { FIT_VIEW_OPTIONS } from './components/PetriCanvas';
 import BrandMark from './components/BrandMark';
 import Toolbar from './components/panels/Toolbar';
+import SimulationOverlay from './components/SimulationOverlay';
 import PropertiesPanel from './components/panels/PropertiesPanel';
 import MatrixPanel from './components/panels/MatrixPanel';
 import ReachabilityPanel from './components/panels/ReachabilityPanel';
@@ -89,12 +89,13 @@ function Editor() {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showAnimations, setShowAnimations] = useState(false);
+  const [showAnimations, setShowAnimations] = useState(true);
   const [speed, setSpeed] = useState(800);
   const [log, setLog] = useState<LogEntry[]>([]);
   // Each step stores the marking before it fired, so stepping back never undoes edits
   const [history, setHistory] = useState<{ marking: Marking; log: LogEntry[] }[]>([]);
   const [firing, setFiring] = useState<{ edgeIds: Set<string>; key: number }>({ edgeIds: new Set(), key: 0 });
+  const [firingTransitionId, setFiringTransitionId] = useState<string | null>(null);
   const [flash, setFlash] = useState<FiringFlash | null>(null);
   const [undoState, setUndoState] = useState<{ past: UndoEntry[]; future: UndoEntry[] }>({ past: [], future: [] });
 
@@ -321,11 +322,13 @@ function Editor() {
 
     animatingRef.current = true;
     setIsAnimating(true);
+    setFiringTransitionId(transitionId);
     setNodes((nds) => applyMarking(nds, consumed));
     setFiring((f) => ({ edgeIds: new Set(inArcIds), key: f.key + 1 }));
     schedule(() => setFiring((f) => ({ edgeIds: new Set(outArcIds), key: f.key + 1 })), phaseMs);
     schedule(() => {
       setFiring((f) => ({ edgeIds: new Set(), key: f.key }));
+      setFiringTransitionId(null);
       finish();
       animatingRef.current = false;
       setIsAnimating(false);
@@ -664,6 +667,7 @@ function Editor() {
     firingEdgeIds: firing.edgeIds,
     firingKey: firing.key,
     firingMs: phaseMs,
+    firingTransitionId,
     flash,
     overlappingEdgeIds,
     hoveredEdgeId,
@@ -776,23 +780,31 @@ function Editor() {
             />
 
             {transitions.length > 0 && (
-              <div className="pointer-events-none absolute left-3 top-3 z-[15] flex flex-wrap gap-1.5" aria-live="polite">
-                {isPlaying && <span className="badge badge-accent-solid">Simulation running</span>}
-                {isAnimating ? (
-                  <span className="badge badge-accent">
-                    <Zap aria-hidden="true" /> Firing
-                  </span>
-                ) : deadlock ? (
-                  <span className="badge badge-error">
-                    <AlertTriangle aria-hidden="true" /> Deadlock
-                  </span>
-                ) : (
-                  <span className="badge badge-accent">
-                    {enabledTransitions.length} enabled
-                  </span>
+              <>
+                {/* Centered simulation overlay (token simulation mode indicator) */}
+                <SimulationOverlay
+                  isPlaying={isPlaying}
+                  isAnimating={isAnimating}
+                  stepCount={history.length}
+                  recentLog={log}
+                  deadlock={deadlock}
+                  enabledCount={enabledTransitions.length}
+                />
+                {/* Top-left status badges for non-simulation states */}
+                {!isPlaying && !isAnimating && (
+                  <div className="pointer-events-none absolute left-3 top-3 z-[15] flex flex-wrap gap-1.5" aria-live="polite">
+                    {deadlock ? (
+                      <span className="badge badge-error">
+                        <AlertTriangle aria-hidden="true" /> Deadlock
+                      </span>
+                    ) : (
+                      <span className="badge badge-accent">
+                        {enabledTransitions.length} enabled
+                      </span>
+                    )}
+                  </div>
                 )}
-                {history.length > 0 && <span className="badge">Step {history.length}</span>}
-              </div>
+              </>
             )}
 
             {nodes.length === 0 && (

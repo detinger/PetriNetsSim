@@ -1310,6 +1310,133 @@
   pointer-events: none;
 }
 
+/* ── Token simulation animations ───────────────────────────────────────── */
+
+/* Pulsing glow on enabled transitions */
+@keyframes petri-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); }
+  50%       { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+
+.petri-transition-enabled {
+  animation: petri-pulse 1.6s ease-in-out infinite;
+}
+
+/* Ripple burst when a transition fires */
+@keyframes petri-ripple {
+  0%   { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.petri-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  border: 2px solid var(--accent);
+  pointer-events: none;
+  animation: petri-ripple 500ms ease-out forwards;
+}
+
+/* Scale-pop when tokens are added to a place */
+@keyframes petri-token-pop {
+  0%   { transform: scale(0.6); }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.petri-token-pop {
+  animation: petri-token-pop 220ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Highlight arc path while token travels along it */
+.petri-arc-firing {
+  stroke: var(--accent) !important;
+  stroke-width: 2.5px !important;
+  transition: stroke 80ms, stroke-width 80ms;
+}
+
+.petri-arc-firing-arrow {
+  fill: var(--accent) !important;
+  transition: fill 80ms;
+}
+
+/* Simulation mode overlay badge */
+.sim-overlay {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 15%, var(--bg-elevated));
+  border: 1.5px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--accent) 20%, transparent);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+  backdrop-filter: blur(8px);
+  animation: petri-overlay-in 200ms ease-out;
+}
+
+@keyframes petri-overlay-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.sim-overlay-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: petri-pulse-dot 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes petri-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* Speed slider in toolbar */
+.speed-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 144px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+.speed-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg-elevated);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.speed-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg-elevated);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

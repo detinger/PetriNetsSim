@@ -21,6 +21,8 @@ export interface CanvasContextValue {
   firingKey: number;
   /** Duration of one animation phase (token travelling along an arc). */
   firingMs: number;
+  /** The transition currently firing (mid-animation). */
+  firingTransitionId: string | null;
   /** The transition that fired last and the places it changed, briefly highlighted. */
   flash: FiringFlash | null;
   /** Arcs with a reverse partner sharing both endpoints; drawn with a parallel offset. */
@@ -40,6 +42,7 @@ export const CanvasContext = createContext<CanvasContextValue>({
   firingEdgeIds: new Set(),
   firingKey: 0,
   firingMs: 300,
+  firingTransitionId: null,
   flash: null,
   overlappingEdgeIds: new Set(),
   hoveredEdgeId: null,

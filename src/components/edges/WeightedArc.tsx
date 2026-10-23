@@ -40,12 +40,16 @@ export default function WeightedArc({
 
   const weight = Number(data?.weight) || 1;
   const editing = editingEdgeId === id;
-  // Weight 1 is implicit; it shows on hover or selection so it's clear the weight can change
   const showBadge = weight > 1 || selected || hoveredEdgeId === id;
   const badgeInteractive = weight > 1 || selected;
+  const isFiring = firingEdgeIds.has(id);
 
-  // The stored markerEnd carries a fixed colour; draw a themed arrowhead instead
   const markerId = `petri-arrow-${id.replace(/[^\w-]/g, '_')}`;
+
+  // How many tokens to animate: capped at 4 to avoid clutter
+  const tokenCount = Math.min(weight, 4);
+  // Stagger each token by 80ms
+  const staggerMs = 80;
 
   return (
     <>
@@ -60,7 +64,7 @@ export default function WeightedArc({
           markerUnits="userSpaceOnUse"
           orient="auto"
         >
-          <path d="M0 1 L10 5 L0 9 Z" className="petri-arc-arrow" />
+          <path d="M0 1 L10 5 L0 9 Z" className={clsx('petri-arc-arrow', isFiring && 'petri-arc-firing-arrow')} />
         </marker>
       </defs>
 
@@ -68,11 +72,10 @@ export default function WeightedArc({
         id={id}
         path={edgePath}
         markerEnd={`url(#${markerId})`}
-        className="petri-arc"
+        className={clsx('petri-arc', isFiring && 'petri-arc-firing')}
         style={{ strokeWidth: selected ? 2.5 : 2 }}
       />
 
-      {/* Ends of the selected arc can be dragged to another node */}
       {selected && !isPlaying && (
         <g className="petri-arc-ends" aria-hidden="true">
           <circle cx={start.x} cy={start.y} r={4} />
@@ -80,11 +83,27 @@ export default function WeightedArc({
         </g>
       )}
 
-      {firingEdgeIds.has(id) && (
-        <circle key={firingKey} r="5" className="fill-accent stroke-net-fill" strokeWidth={1.5}>
-          <animateMotion dur={`${firingMs}ms`} repeatCount="1" path={edgePath} begin="0s" fill="freeze" />
+      {/* Animated tokens: one per weight (capped at 4), staggered */}
+      {isFiring && Array.from({ length: tokenCount }).map((_, i) => (
+        <circle
+          key={`${firingKey}-${i}`}
+          r={i === 0 ? 6 : 4.5}
+          className="fill-accent stroke-net-fill"
+          strokeWidth={1.5}
+          style={{ filter: 'drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 80%, transparent))' }}
+        >
+          <animateMotion
+            dur={`${firingMs}ms`}
+            begin={`${i * staggerMs}ms`}
+            repeatCount="1"
+            path={edgePath}
+            fill="freeze"
+            calcMode="spline"
+            keyTimes="0;1"
+            keySplines="0.42 0 0.58 1"
+          />
         </circle>
-      )}
+      ))}
 
       {(showBadge || editing) && (
         <EdgeLabelRenderer>
