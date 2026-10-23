@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, useInternalNode } from '@xyflow/react';
 import { clsx } from 'clsx';
-import { ARC_CURVATURE, arcPath, autoPositions } from '../../lib/arcGeometry';
+import { arcPath } from '../../lib/arcGeometry';
 import { useCanvas } from '../CanvasContext';
 
 export default function WeightedArc({
@@ -27,16 +27,9 @@ export default function WeightedArc({
 
   if (!sourceNode || !targetNode) return null;
 
-  // Always derive exit/entry sides from current node positions so arcs re-route
-  // correctly when nodes are moved, without relying on stale stored handle names.
-  const { sourcePosition, targetPosition } = autoPositions(sourceNode, targetNode);
-
   const [edgePath, labelX, labelY, start, end] = arcPath({
     source: sourceNode,
-    sourcePosition,
     target: targetNode,
-    targetPosition,
-    curvature: (data?.curvature as number) ?? ARC_CURVATURE,
     parallel: overlappingEdgeIds.has(id),
   });
 
@@ -59,7 +52,7 @@ export default function WeightedArc({
         <marker
           id={markerId}
           viewBox="0 0 10 10"
-          refX="10"
+          refX="0"
           refY="5"
           markerWidth="10"
           markerHeight="10"

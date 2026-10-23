@@ -1,19 +1,14 @@
-import { getBezierPath, InternalNode, Position } from '@xyflow/react';
-import { pickSides, Side } from './model';
+import { InternalNode } from '@xyflow/react';
 
 type Point = { x: number; y: number };
 type Endpoint = InternalNode | Point;
 
-export const ARC_CURVATURE = 0.75;
-/** Distance between two opposite arcs that would otherwise share both endpoints. */
-const PARALLEL_OFFSET = 7;
-
-export const sidePosition: Record<Side, Position> = {
-  left: Position.Left,
-  right: Position.Right,
-  top: Position.Top,
-  bottom: Position.Bottom,
-};
+/** Perpendicular separation between two opposite arcs sharing the same node pair. */
+const PARALLEL_OFFSET = 8;
+/** Extra bow of the quadratic bezier on parallel arcs (pixels). */
+const PARALLEL_BOW = 10;
+/** Arrow marker length in canvas pixels — path is shortened so the marker tip lands on the outline. */
+const MARKER_LEN = 10;
 
 const isNode = (end: Endpoint): end is InternalNode => 'internals' in end;
 
@@ -32,80 +27,80 @@ export function shapeCenter(node: InternalNode): Point {
   return shapeBox(node).center;
 }
 
-/**
- * Point on the shape's outline at the middle of a side, optionally moved along
- * that side by `shift`. Places are circles, so a shifted point follows the curve.
- */
-export function sidePoint(node: InternalNode, position: Position, shift = 0): Point {
+function normalize(dx: number, dy: number): Point {
+  const len = Math.hypot(dx, dy) || 1;
+  return { x: dx / len, y: dy / len };
+}
+
+/** Point on the node's shape outline in direction `dir` from the center. */
+function outlinePoint(node: InternalNode, dir: Point): Point {
   const { center, width, height } = shapeBox(node);
-  const circle = node.type === 'place';
-  const halfW = width / 2;
-  const halfH = height / 2;
-  const across = (half: number) => (circle ? Math.sqrt(Math.max(half * half - shift * shift, 0)) : half);
-
-  switch (position) {
-    case Position.Left:
-      return { x: center.x - across(halfW), y: center.y + shift };
-    case Position.Right:
-      return { x: center.x + across(halfW), y: center.y + shift };
-    case Position.Top:
-      return { x: center.x + shift, y: center.y - across(halfH) };
-    case Position.Bottom:
-      return { x: center.x + shift, y: center.y + across(halfH) };
-    default:
-      return center;
+  if (node.type === 'place') {
+    const r = width / 2;
+    return { x: center.x + r * dir.x, y: center.y + r * dir.y };
   }
+  // Rectangle: ray-AABB intersection — find smallest t so center + t*dir hits a wall
+  const hw = width / 2;
+  const hh = height / 2;
+  const tx = dir.x !== 0 ? hw / Math.abs(dir.x) : Infinity;
+  const ty = dir.y !== 0 ? hh / Math.abs(dir.y) : Infinity;
+  const t = Math.min(tx, ty);
+  return { x: center.x + t * dir.x, y: center.y + t * dir.y };
 }
 
-/** Sides used when an arc is dropped on a node's body: the ones facing each other. */
-export function autoPositions(source: InternalNode, target: InternalNode) {
-  const { sourceSide, targetSide } = pickSides(shapeCenter(source), shapeCenter(target));
-  return { sourcePosition: sidePosition[sourceSide], targetPosition: sidePosition[targetSide] };
+function centerOf(end: Endpoint): Point {
+  return isNode(end) ? shapeBox(end).center : end;
 }
 
-// Shift along the side towards the left of travel; opposite arcs get opposite shifts
-function parallelShift(position: Position, normal: Point) {
-  const alongSide = position === Position.Left || position === Position.Right;
-  const component = (alongSide ? normal.y : normal.x) || (alongSide ? normal.x : normal.y);
-  return Math.sign(component) * PARALLEL_OFFSET;
+function endpointAt(end: Endpoint, dir: Point): Point {
+  return isNode(end) ? outlinePoint(end, dir) : end;
 }
 
-/** Bezier from shape outline to shape outline (or to a free point while dragging). */
+/** Straight line (or gentle bow for parallel pairs) from shape outline to shape outline. */
 export function arcPath({
   source,
-  sourcePosition,
   target,
-  targetPosition,
-  curvature = ARC_CURVATURE,
   parallel = false,
 }: {
   source: Endpoint;
-  sourcePosition: Position;
   target: Endpoint;
-  targetPosition: Position;
-  curvature?: number;
   parallel?: boolean;
 }) {
-  let start = isNode(source) ? sidePoint(source, sourcePosition) : source;
-  let end = isNode(target) ? sidePoint(target, targetPosition) : target;
+  const sc = centerOf(source);
+  const tc = centerOf(target);
+  const dir = normalize(tc.x - sc.x, tc.y - sc.y);
+  const rev = { x: -dir.x, y: -dir.y };
 
-  if (parallel && isNode(source) && isNode(target)) {
-    const dx = end.x - start.x;
-    const dy = end.y - start.y;
-    const length = Math.hypot(dx, dy) || 1;
-    const normal = { x: -dy / length, y: dx / length };
-    start = sidePoint(source, sourcePosition, parallelShift(sourcePosition, normal));
-    end = sidePoint(target, targetPosition, parallelShift(targetPosition, normal));
+  if (parallel) {
+    const perp = { x: -dir.y, y: dir.x };
+    // Raw offset from the cardinal outline point — may land off the shape surface.
+    // Project back onto the actual outline so arcs always touch their shapes.
+    const rawS = endpointAt(source, dir);
+    const rawE = endpointAt(target, rev);
+    const rawStart = { x: rawS.x + perp.x * PARALLEL_OFFSET, y: rawS.y + perp.y * PARALLEL_OFFSET };
+    const rawEnd   = { x: rawE.x + perp.x * PARALLEL_OFFSET, y: rawE.y + perp.y * PARALLEL_OFFSET };
+    const start = isNode(source)
+      ? outlinePoint(source, normalize(rawStart.x - sc.x, rawStart.y - sc.y))
+      : rawStart;
+    const end = isNode(target)
+      ? outlinePoint(target, normalize(rawEnd.x - tc.x, rawEnd.y - tc.y))
+      : rawEnd;
+    const mx = (start.x + end.x) / 2 + perp.x * PARALLEL_BOW;
+    const my = (start.y + end.y) / 2 + perp.y * PARALLEL_BOW;
+    // Shorten the path end along the bezier's end tangent so marker tip (refX=0) lands on `end`
+    const et = normalize(end.x - mx, end.y - my);
+    const pathEnd = { x: end.x - MARKER_LEN * et.x, y: end.y - MARKER_LEN * et.y };
+    const labelX = (start.x + 2 * mx + end.x) / 4;
+    const labelY = (start.y + 2 * my + end.y) / 4;
+    return [`M ${start.x} ${start.y} Q ${mx} ${my} ${pathEnd.x} ${pathEnd.y}`, labelX, labelY, start, end] as const;
   }
 
-  const [path, labelX, labelY] = getBezierPath({
-    sourceX: start.x,
-    sourceY: start.y,
-    sourcePosition,
-    targetX: end.x,
-    targetY: end.y,
-    targetPosition,
-    curvature,
-  });
-  return [path, labelX, labelY, start, end] as const;
+  const start = endpointAt(source, dir);
+  const end   = endpointAt(target, rev);
+  // Shorten the line so the marker tip (refX=0) lands exactly on `end`
+  const pathEndX = end.x - MARKER_LEN * dir.x;
+  const pathEndY = end.y - MARKER_LEN * dir.y;
+  const labelX = (start.x + end.x) / 2;
+  const labelY = (start.y + end.y) / 2;
+  return [`M ${start.x} ${start.y} L ${pathEndX} ${pathEndY}`, labelX, labelY, start, end] as const;
 }

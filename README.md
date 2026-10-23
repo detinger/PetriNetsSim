@@ -9,7 +9,7 @@ An interactive Petri Net modeling and simulation environment built with React, T
 ### 1. Visual Modeling
 
 * **Drag-and-Drop Canvas:** Build nets on an infinite, snap-to-grid canvas powered by React Flow.
-* **Direct Connecting:** Drag from a dot on a node's edge and drop anywhere on another node; the arc picks the sides that face each other. Drop on empty space to create the next element already connected. Invalid links (place → place, transition → transition) turn red while you drag.
+* **Direct Connecting:** Drag from any point on a node's border and drop anywhere on another node; the arc exits and enters at the exact outline point facing the target, routing as a straight line. When two arcs run in opposite directions between the same pair, both bow gently to stay legible. Drop on empty space to create the next element already connected. Invalid links (place → place, transition → transition) turn red while you drag.
 * **Arc Editing:** Double-click an arc to change its weight, drag the end of a selected arc to move it, and a second arc between the same pair simply adds to the weight.
 * **Undo and Redo:** Every edit can be undone (`⌘/Ctrl+Z`) and redone (`⌘/Ctrl+Shift+Z`).
 * **Light and Dark Themes:** A calm, compact interface that follows your system theme or a choice you make in the header.

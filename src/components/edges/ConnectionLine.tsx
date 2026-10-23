@@ -1,7 +1,6 @@
-import { ConnectionLineComponentProps, Position } from '@xyflow/react';
+import { ConnectionLineComponentProps } from '@xyflow/react';
 import { clsx } from 'clsx';
-import { arcPath, autoPositions } from '../../lib/arcGeometry';
-import { isAutoHandle } from '../../lib/model';
+import { arcPath } from '../../lib/arcGeometry';
 
 /**
  * Preview drawn while connecting. It uses the same geometry as a finished arc,
@@ -11,12 +10,10 @@ import { isAutoHandle } from '../../lib/model';
 export default function ConnectionLine({
   fromNode,
   fromHandle,
-  fromPosition,
   toNode,
   toHandle,
   toX,
   toY,
-  toPosition,
   connectionStatus,
 }: ConnectionLineComponentProps) {
   // Dragging the source end of an existing arc starts from its (fixed) target
@@ -26,20 +23,12 @@ export default function ConnectionLine({
   if (connectionStatus === 'valid' && toNode && toHandle) {
     const source = reversed ? toNode : fromNode;
     const target = reversed ? fromNode : toNode;
-    let sourcePosition: Position;
-    let targetPosition: Position;
-    if (isAutoHandle(toHandle.id)) {
-      ({ sourcePosition, targetPosition } = autoPositions(source, target));
-    } else {
-      sourcePosition = reversed ? toHandle.position : fromPosition;
-      targetPosition = reversed ? fromPosition : toHandle.position;
-    }
-    [path] = arcPath({ source, sourcePosition, target, targetPosition });
+    [path] = arcPath({ source, target });
   } else {
     const pointer = { x: toX, y: toY };
     [path] = reversed
-      ? arcPath({ source: pointer, sourcePosition: toPosition, target: fromNode, targetPosition: fromPosition })
-      : arcPath({ source: fromNode, sourcePosition: fromPosition, target: pointer, targetPosition: toPosition });
+      ? arcPath({ source: pointer, target: fromNode })
+      : arcPath({ source: fromNode, target: pointer });
   }
 
   return (
@@ -54,7 +43,7 @@ export default function ConnectionLine({
         <marker
           id="petri-connection-arrow"
           viewBox="0 0 10 10"
-          refX="10"
+          refX="0"
           refY="5"
           markerWidth="10"
           markerHeight="10"
