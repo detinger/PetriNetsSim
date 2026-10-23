@@ -1,15 +1,13 @@
 import { useRef, useState } from 'react';
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, useInternalNode } from '@xyflow/react';
 import { clsx } from 'clsx';
-import { ARC_CURVATURE, arcPath } from '../../lib/arcGeometry';
+import { arcPath } from '../../lib/arcGeometry';
 import { useCanvas } from '../CanvasContext';
 
 export default function WeightedArc({
   id,
   source,
   target,
-  sourcePosition,
-  targetPosition,
   data,
   selected,
 }: EdgeProps) {
@@ -31,10 +29,7 @@ export default function WeightedArc({
 
   const [edgePath, labelX, labelY, start, end] = arcPath({
     source: sourceNode,
-    sourcePosition,
     target: targetNode,
-    targetPosition,
-    curvature: (data?.curvature as number) ?? ARC_CURVATURE,
     parallel: overlappingEdgeIds.has(id),
   });
 
@@ -57,7 +52,7 @@ export default function WeightedArc({
         <marker
           id={markerId}
           viewBox="0 0 10 10"
-          refX="10"
+          refX="0"
           refY="5"
           markerWidth="10"
           markerHeight="10"

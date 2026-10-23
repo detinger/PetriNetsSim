@@ -38,7 +38,6 @@ import {
   NODE_SIZE,
   normalizeModel,
   sameMarking,
-  sideOfHandle,
   stripForExport,
   uniqueName,
 } from './lib/model';
@@ -185,14 +184,10 @@ function Editor() {
     [analysisKey]
   );
 
-  // Two-way arcs that share both endpoints are drawn side by side (C9)
+  // Two-way arcs that share both endpoints are drawn side by side (C9).
   const overlappingEdgeIds = useMemo(() => {
-    const key = (source: string, sourceHandle: string | null | undefined, target: string, targetHandle: string | null | undefined) =>
-      `${source}|${sideOfHandle(sourceHandle)}|${target}|${sideOfHandle(targetHandle)}`;
-    const keys = new Set(edges.map((e) => key(e.source, e.sourceHandle, e.target, e.targetHandle)));
-    return new Set(
-      edges.filter((e) => keys.has(key(e.target, e.targetHandle, e.source, e.sourceHandle))).map((e) => e.id)
-    );
+    const pairs = new Set(edges.map((e) => `${e.source}|${e.target}`));
+    return new Set(edges.filter((e) => pairs.has(`${e.target}|${e.source}`)).map((e) => e.id));
   }, [edges]);
 
   const nameOf = useCallback(
