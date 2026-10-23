@@ -2,12 +2,34 @@ import { Circle, Square, Play, Pause, StepForward, StepBack, RotateCcw, Trash2, 
 import { Tooltip } from '../ui';
 import { MOD_KEY } from '../../lib/shortcuts';
 
-export const SPEEDS = [
-  { label: '0.5×', ms: 1600 },
-  { label: '1×', ms: 800 },
-  { label: '2×', ms: 400 },
-  { label: '4×', ms: 200 },
-];
+// Slider uses a two-segment logarithmic scale so 1× lands exactly at the midpoint (50):
+//   pos  0 → 0.1×   pos 25 → 0.316×   pos 50 → 1×   pos 75 → 2×   pos 100 → 4×
+// Left half  (0–50):  mult = 0.1 × 10^(pos/50)
+// Right half (50–100): mult = 1 × 4^((pos−50)/50)
+// Speed in ms = 800 / multiplier
+
+const SLIDER_MIN = 0;
+const SLIDER_MAX = 100;
+
+function sliderToMs(pos: number): number {
+  const mult = pos <= 50
+    ? 0.1 * Math.pow(10, pos / 50)
+    : Math.pow(4, (pos - 50) / 50);
+  return Math.round(800 / mult);
+}
+
+function msToSlider(ms: number): number {
+  const mult = 800 / ms;
+  if (mult <= 1) return (Math.log10(mult / 0.1) / Math.log10(10)) * 50;
+  return 50 + (Math.log(mult) / Math.log(4)) * 50;
+}
+
+function speedLabel(ms: number): string {
+  const x = 800 / ms;
+  if (x >= 10) return `${Math.round(x)}×`;
+  if (x >= 1) return `${x.toFixed(1).replace(/\.0$/, '')}×`;
+  return `${x.toFixed(2).replace(/0$/, '')}×`;
+}
 
 export default function Toolbar({
   addPlace,
@@ -59,6 +81,8 @@ export default function Toolbar({
   isEmpty: boolean;
 }) {
   const editLocked = isPlaying ? 'Pause the simulation to edit' : null;
+
+  const sliderValue = Math.round(msToSlider(speed));
 
   return (
     <div className="toolbar" role="toolbar" aria-label="Model and simulation">
@@ -140,17 +164,26 @@ export default function Toolbar({
             <span className="btn-label">Reset</span>
           </button>
         </Tooltip>
-        <select
-          className="select select-sm w-auto"
-          value={speed}
-          onChange={(e) => onSpeedChange(Number(e.target.value))}
-          aria-label="Simulation speed"
-          title="Simulation speed"
-        >
-          {SPEEDS.map(({ label, ms }) => (
-            <option key={ms} value={ms}>{label}</option>
-          ))}
-        </select>
+
+        {/* Speed slider: drag right for faster, left for slower */}
+        <div className="flex items-center gap-2" title={`Speed: ${speedLabel(speed)}`}>
+          <span className="text-[11px] font-semibold text-muted w-6 text-right tabular-nums select-none">{speedLabel(speed)}</span>
+          <input
+            type="range"
+            className="speed-slider"
+            min={SLIDER_MIN}
+            max={SLIDER_MAX}
+            step={1}
+            value={sliderValue}
+            aria-label="Simulation speed"
+            onChange={(e) => {
+              let pos = Number(e.target.value);
+              // Snap to 1× (pos=50) within ±3 units
+              if (Math.abs(pos - 50) <= 3) pos = 50;
+              onSpeedChange(sliderToMs(pos));
+            }}
+          />
+        </div>
       </div>
 
       <span className="toolbar-divider" aria-hidden="true" />

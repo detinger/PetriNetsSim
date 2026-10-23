@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useReactFlow } from '@xyflow/react';
 import { clsx } from 'clsx';
 import { NetPlace } from '../../lib/types';
@@ -9,6 +9,16 @@ export default function PlaceNode({ id, data, selected }: { id: string; data: Ne
   const { updateNodeData } = useReactFlow();
   const { origin, drop } = useDropState(id, 'transition');
   const flashKey = useFlash(id);
+
+  // Track previous token count to trigger pop animation on change
+  const prevTokens = useRef(tokens);
+  const [popKey, setPopKey] = useState<number | null>(null);
+  useEffect(() => {
+    if (prevTokens.current !== tokens) {
+      prevTokens.current = tokens;
+      setPopKey(Date.now());
+    }
+  }, [tokens]);
 
   useEffect(() => {
     updateNodeData(id, {
@@ -21,11 +31,15 @@ export default function PlaceNode({ id, data, selected }: { id: string; data: Ne
   const renderTokens = () => {
     if (tokens === 0) return null;
     if (tokens >= 5) {
-      return <span className="text-base font-bold tabular-nums text-net-stroke">{tokens}</span>;
+      return (
+        <span key={popKey ?? 'n'} className={clsx('text-base font-bold tabular-nums text-net-stroke', popKey != null && 'petri-token-pop')}>
+          {tokens}
+        </span>
+      );
     }
 
     return (
-      <div className="flex flex-wrap items-center justify-center gap-1 max-w-[36px] min-h-[14px]">
+      <div key={popKey ?? 'n'} className={clsx('flex flex-wrap items-center justify-center gap-1 max-w-[36px] min-h-[14px]', popKey != null && 'petri-token-pop')}>
         {Array.from({ length: tokens }).map((_, i) => (
           <div key={i} className="w-2.5 h-2.5 bg-net-stroke rounded-full shrink-0" />
         ))}
