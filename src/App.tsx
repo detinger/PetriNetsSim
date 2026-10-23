@@ -36,9 +36,10 @@ import {
   markingOf,
   newId,
   NODE_SIZE,
+  nodeCenter,
   normalizeModel,
+  pickSides,
   sameMarking,
-  sideOfHandle,
   stripForExport,
   uniqueName,
 } from './lib/model';
@@ -185,15 +186,23 @@ function Editor() {
     [analysisKey]
   );
 
-  // Two-way arcs that share both endpoints are drawn side by side (C9)
+  // Two-way arcs that share both endpoints are drawn side by side (C9).
+  // Uses live node centers (same logic as WeightedArc) so the offset is applied
+  // consistently after nodes are moved.
   const overlappingEdgeIds = useMemo(() => {
-    const key = (source: string, sourceHandle: string | null | undefined, target: string, targetHandle: string | null | undefined) =>
-      `${source}|${sideOfHandle(sourceHandle)}|${target}|${sideOfHandle(targetHandle)}`;
-    const keys = new Set(edges.map((e) => key(e.source, e.sourceHandle, e.target, e.targetHandle)));
+    const nodeById = new Map(nodes.map((n) => [n.id, n]));
+    const liveSides = (sourceId: string, targetId: string) => {
+      const s = nodeById.get(sourceId);
+      const t = nodeById.get(targetId);
+      if (!s || !t) return null;
+      const { sourceSide, targetSide } = pickSides(nodeCenter(s), nodeCenter(t));
+      return `${sourceId}|${sourceSide}|${targetId}|${targetSide}`;
+    };
+    const keys = new Set(edges.map((e) => liveSides(e.source, e.target)).filter(Boolean));
     return new Set(
-      edges.filter((e) => keys.has(key(e.target, e.targetHandle, e.source, e.sourceHandle))).map((e) => e.id)
+      edges.filter((e) => keys.has(liveSides(e.target, e.source))).map((e) => e.id)
     );
-  }, [edges]);
+  }, [edges, nodes]);
 
   const nameOf = useCallback(
     (id: string) => (nodesRef.current.find((n) => n.id === id)?.data?.name as string) || id,

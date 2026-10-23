@@ -1,15 +1,13 @@
 import { useRef, useState } from 'react';
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, useInternalNode } from '@xyflow/react';
 import { clsx } from 'clsx';
-import { ARC_CURVATURE, arcPath } from '../../lib/arcGeometry';
+import { ARC_CURVATURE, arcPath, autoPositions } from '../../lib/arcGeometry';
 import { useCanvas } from '../CanvasContext';
 
 export default function WeightedArc({
   id,
   source,
   target,
-  sourcePosition,
-  targetPosition,
   data,
   selected,
 }: EdgeProps) {
@@ -28,6 +26,10 @@ export default function WeightedArc({
   } = useCanvas();
 
   if (!sourceNode || !targetNode) return null;
+
+  // Always derive exit/entry sides from current node positions so arcs re-route
+  // correctly when nodes are moved, without relying on stale stored handle names.
+  const { sourcePosition, targetPosition } = autoPositions(sourceNode, targetNode);
 
   const [edgePath, labelX, labelY, start, end] = arcPath({
     source: sourceNode,
