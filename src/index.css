@@ -1124,9 +1124,17 @@
 
 /*
  * Side handles: visible on hover and on the selected node, with a hit area that
- * extends outwards only, so the narrow transition body stays draggable.
+ * extends outwards only, so the full shape body stays draggable.
  * z-index keeps them above the shape and the drop zone.
+ * The transforms push each handle fully outside the node so 0px of the handle
+ * body overlaps the shape — the default translate(-50%,-50%) would place 4px
+ * inside, which intercepts node-drag events on the narrow transition.
  */
+.react-flow__handle-left.petri-handle  { transform: translate(-100%, -50%); }
+.react-flow__handle-right.petri-handle { transform: translate( 100%, -50%); }
+.react-flow__handle-top.petri-handle   { transform: translate(-50%, -100%); }
+.react-flow__handle-bottom.petri-handle{ transform: translate(-50%,  100%); }
+
 .react-flow__handle.petri-handle {
   z-index: 2;
   width: 8px;
