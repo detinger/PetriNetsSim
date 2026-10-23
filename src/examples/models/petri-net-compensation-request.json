@@ -4,22 +4,16 @@
       "id": "p1775031201531",
       "type": "place",
       "position": {
-        "x": -232.15373108486526,
-        "y": 59.53843007116893
+        "x": -240,
+        "y": 60
       },
       "data": {
         "name": "start",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p1775031204239",
@@ -32,15 +26,9 @@
         "name": "c1",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p1775031205053",
@@ -53,15 +41,9 @@
         "name": "c2",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p1775031205611",
@@ -74,15 +56,9 @@
         "name": "c3",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p1775031219773",
@@ -95,15 +71,9 @@
         "name": "c4",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p1775031259269",
@@ -116,19 +86,13 @@
         "name": "c5",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -20.215991442091763,
           "y": -0.8731617126613855
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "p1775031272511",
@@ -141,15 +105,9 @@
         "name": "end",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": true,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t1775031284556",
@@ -160,17 +118,10 @@
       },
       "data": {
         "name": "check ticket",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1775031286436",
@@ -181,7 +132,6 @@
       },
       "data": {
         "name": "examine thoroughly",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -189,34 +139,21 @@
           "x": 2.421874855645001,
           "y": -94.53124436549842
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1775031287011",
       "type": "transition",
       "position": {
-        "x": -76.27793943122128,
-        "y": 55.89585501221568
+        "x": -80,
+        "y": 60
       },
       "data": {
         "name": "register request",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1775031287452",
@@ -227,7 +164,6 @@
       },
       "data": {
         "name": "pay compensation",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -235,13 +171,7 @@
           "x": 3.014705702662468,
           "y": -95.859369286336
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1775031287919",
@@ -252,17 +182,10 @@
       },
       "data": {
         "name": "examine casually",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1775031288319",
@@ -273,17 +196,10 @@
       },
       "data": {
         "name": "reject request",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1775031413316",
@@ -294,17 +210,10 @@
       },
       "data": {
         "name": "decide",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1775031458493",
@@ -315,7 +224,6 @@
       },
       "data": {
         "name": "reinitiate request",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -323,13 +231,7 @@
           "x": 0.12867646291851997,
           "y": 0
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     }
   ],
   "edges": [
@@ -357,7 +259,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 48.842554175500354
       },
       "source": "t1775031458493",
       "sourceHandle": "source-top",
@@ -375,7 +278,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -128.03815053470026
       },
       "source": "t1775031458493",
       "sourceHandle": "source-top",
@@ -393,7 +297,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -259.2479133978036
       },
       "source": "p1775031259269",
       "sourceHandle": "source-bottom",
@@ -411,7 +316,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 44.70508964626643
       },
       "source": "t1775031287011",
       "sourceHandle": "source-right",
@@ -429,7 +335,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -54.29841780731599
       },
       "source": "t1775031287011",
       "sourceHandle": "source-right",
@@ -447,7 +354,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 0
       },
       "source": "p1775031204239",
       "sourceHandle": "source-right",
@@ -465,7 +373,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 0
       },
       "source": "p1775031204239",
       "sourceHandle": "source-right",
@@ -483,7 +392,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 0
       },
       "source": "t1775031286436",
       "sourceHandle": "source-right",
@@ -678,7 +588,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-04-01T08:25:38.534Z",
-    "name": "custom"
+    "timestamp": "2026-10-23T22:23:18.827Z",
+    "name": "compensation-request"
   }
 }

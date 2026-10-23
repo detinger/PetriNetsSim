@@ -11,19 +11,13 @@
         "name": "P3",
         "tokens": 100,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 35.05974055733532,
           "y": -12.826286000199616
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pm3",
@@ -36,19 +30,13 @@
         "name": "Pm3",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -39.9632329121232,
           "y": -68.0836356477812
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pback3",
@@ -61,19 +49,13 @@
         "name": "Pback3",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 58.198525942862034,
           "y": -39.93565938435495
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pout3",
@@ -86,19 +68,13 @@
         "name": "Pout3",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
-          "x": -25.790439639240503,
-          "y": 4.7702203039079905
+          "x": -3.5130958892405033,
+          "y": 4.2038140539079905
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "P4",
@@ -111,19 +87,13 @@
         "name": "P4",
         "tokens": 93,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 43.72701945248991,
           "y": -64.00734912604094
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pm4",
@@ -136,15 +106,9 @@
         "name": "Pm4",
         "tokens": 3,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "Pback4",
@@ -157,15 +121,9 @@
         "name": "Pback4",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "Pout4",
@@ -178,15 +136,9 @@
         "name": "Pout4",
         "tokens": 3,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "Pm1",
@@ -199,19 +151,13 @@
         "name": "Pm1",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 29.926468804478645,
           "y": -3.318014508113265
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "P1",
@@ -224,19 +170,13 @@
         "name": "P1",
         "tokens": 100,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 25.919116102159023,
           "y": -4.774815891869366
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pout1",
@@ -249,19 +189,13 @@
         "name": "Pout1",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 36.102939024567604,
           "y": -5.174632044509053
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pback1",
@@ -274,19 +208,13 @@
         "name": "Pback1",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -50.99723960738629,
           "y": -16.1029402166605
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pm2",
@@ -299,19 +227,13 @@
         "name": "Pm2",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 49.45312205236405,
           "y": -64.38418733887374
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "P2",
@@ -324,19 +246,13 @@
         "name": "P2",
         "tokens": 100,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -26.893380749970675,
           "y": -1.1672793421894312
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pout2",
@@ -349,19 +265,13 @@
         "name": "Pout2",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
-          "x": 25.96507198177278,
-          "y": 1.4338234439492226
+          "x": 4.46507198177278,
+          "y": 1.7189796939492226
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "Pback2",
@@ -374,19 +284,13 @@
         "name": "Pback2",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 51.61304839421064,
           "y": -55.110290832817554
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tback3",
@@ -397,17 +301,10 @@
       },
       "data": {
         "name": "tback3",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tredo3",
@@ -418,7 +315,6 @@
       },
       "data": {
         "name": "tredo3",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -426,13 +322,7 @@
           "x": 41.525732818990946,
           "y": -34.93565968237817
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tredo2",
@@ -443,7 +333,6 @@
       },
       "data": {
         "name": "tredo2",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -451,13 +340,7 @@
           "x": 40.96047549974173,
           "y": -25.85937345866114
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tok3",
@@ -468,7 +351,6 @@
       },
       "data": {
         "name": "tok3",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -476,13 +358,7 @@
           "x": -38.18014478310943,
           "y": -41.63602693006396
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tredo4",
@@ -493,7 +369,6 @@
       },
       "data": {
         "name": "tredo4",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -501,13 +376,7 @@
           "x": -38.55238740798086,
           "y": -3.6167277256026864
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tin4",
@@ -518,7 +387,6 @@
       },
       "data": {
         "name": "tin4",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -526,13 +394,7 @@
           "x": -0.9237131802365184,
           "y": -91.19025191757828
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tok4",
@@ -543,7 +405,6 @@
       },
       "data": {
         "name": "tok4",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -551,13 +412,7 @@
           "x": 30.611211410723627,
           "y": -17.187498975545168
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tback4",
@@ -568,7 +423,6 @@
       },
       "data": {
         "name": "tback4",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -576,13 +430,7 @@
           "x": -25.850182282738388,
           "y": 7.941175997257233
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tsynch1_23",
@@ -593,7 +441,6 @@
       },
       "data": {
         "name": "tsynch1_23",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -601,13 +448,7 @@
           "x": -54.540437925606966,
           "y": -10.266543505713344
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tout1",
@@ -618,17 +459,10 @@
       },
       "data": {
         "name": "tout1",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tok1",
@@ -639,7 +473,6 @@
       },
       "data": {
         "name": "tok1",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -647,13 +480,7 @@
           "x": 37.15992425568402,
           "y": -35.28032877948135
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tsynch4_23",
@@ -664,7 +491,6 @@
       },
       "data": {
         "name": "tsynch4_23",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -672,13 +498,7 @@
           "x": -58.55698180384934,
           "y": -15.886947582475841
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tredo1",
@@ -689,7 +509,6 @@
       },
       "data": {
         "name": "tredo1",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -697,13 +516,7 @@
           "x": -48.92922502476722,
           "y": -39.09007119946182
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tback1",
@@ -714,17 +527,10 @@
       },
       "data": {
         "name": "tback1",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tback2",
@@ -735,17 +541,10 @@
       },
       "data": {
         "name": "tback2",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "tok2",
@@ -756,7 +555,6 @@
       },
       "data": {
         "name": "tok2",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -764,13 +562,7 @@
           "x": 34.85293909907341,
           "y": -28.27205713838339
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     }
   ],
   "edges": [
@@ -924,7 +716,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 167.18158860344488
       },
       "source": "tsynch4_23",
       "sourceHandle": "source-right",
@@ -978,7 +771,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -229.86791196770136
       },
       "source": "P2",
       "sourceHandle": "source-top",
@@ -996,7 +790,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 215.658540861937
       },
       "source": "P3",
       "sourceHandle": "source-top",
@@ -1014,7 +809,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -173.15898690196977
       },
       "source": "tsynch1_23",
       "sourceHandle": "source-left",
@@ -1068,7 +864,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 173.32679324540138
       },
       "source": "tsynch1_23",
       "sourceHandle": "source-right",
@@ -1176,7 +973,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -59.768662103081006
       },
       "source": "tback3",
       "sourceHandle": "source-left",
@@ -1284,7 +1082,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 60.55325697111014
       },
       "source": "tback2",
       "sourceHandle": "source-right",
@@ -1374,7 +1173,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 90.40592887396457
       },
       "source": "tout1",
       "sourceHandle": "source-right",
@@ -1464,7 +1264,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 120.68594010147592
       },
       "source": "tback1",
       "sourceHandle": "source-right",
@@ -1497,7 +1298,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-31T08:16:11.526Z",
+    "timestamp": "2026-10-23T22:31:20.913Z",
     "name": "kanban-board"
   }
 }

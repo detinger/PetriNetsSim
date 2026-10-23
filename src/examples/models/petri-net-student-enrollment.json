@@ -4,67 +4,50 @@
       "id": "p0",
       "type": "place",
       "position": {
-        "x": -55.752443868825054,
-        "y": 354.09570918356576
+        "x": -60,
+        "y": 350
       },
       "data": {
         "name": "start",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p1",
       "type": "place",
       "position": {
-        "x": 243,
-        "y": 353
+        "x": 210,
+        "y": 350
       },
       "data": {
         "name": "correct?",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
-          "x": 37.293196306563914,
-          "y": -1.1994484579190612
+          "x": 51.886946306563914,
+          "y": -21.73851095791906
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false
+      }
     },
     {
       "id": "p2",
       "type": "place",
       "position": {
-        "x": 1046.2871275506973,
-        "y": 453.9570918356574
+        "x": 1050,
+        "y": 450
       },
       "data": {
         "name": "p2",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p3",
@@ -77,12 +60,8 @@
         "name": "p3",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
+        "shapeWidth": 64,
+        "shapeHeight": 64
       }
     },
     {
@@ -96,36 +75,24 @@
         "name": "p4",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p5",
       "type": "place",
       "position": {
-        "x": 1453.9052448057041,
-        "y": 447.1810489611408
+        "x": 1440,
+        "y": 450
       },
       "data": {
         "name": "p5",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p6",
@@ -138,12 +105,8 @@
         "name": "p6",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
+        "shapeWidth": 64,
+        "shapeHeight": 64
       }
     },
     {
@@ -157,15 +120,9 @@
         "name": "end",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p8",
@@ -178,12 +135,12 @@
         "name": "trivial problems?",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
+        "shapeWidth": 64,
+        "shapeHeight": 64,
+        "labelOffset": {
+          "x": 86.2890625,
+          "y": -43.61328125
+        }
       }
     },
     {
@@ -197,19 +154,13 @@
         "name": "p1",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 11.194852273911238,
           "y": 7.05422752071172
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "p10",
@@ -222,39 +173,27 @@
         "name": "help available?",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 84.81617141515017,
           "y": -40.326284361071885
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false
+      }
     },
     {
       "id": "t4",
       "type": "transition",
       "position": {
-        "x": 1351.765673468526,
-        "y": 445.19141836713146
+        "x": 1370,
+        "y": 450
       },
       "data": {
         "name": "Make Payment",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t5",
@@ -265,17 +204,10 @@
       },
       "data": {
         "name": "t5",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t6",
@@ -286,17 +218,10 @@
       },
       "data": {
         "name": "incorrect",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t10",
@@ -307,36 +232,24 @@
       },
       "data": {
         "name": "Obtain Help",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
       }
     },
     {
       "id": "t7",
       "type": "transition",
       "position": {
-        "x": 560.8085816328685,
-        "y": 148.61716326573705
+        "x": 560,
+        "y": 150
       },
       "data": {
         "name": "t7",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t8",
@@ -347,14 +260,9 @@
       },
       "data": {
         "name": "trivial problems",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
       }
     },
     {
@@ -366,17 +274,10 @@
       },
       "data": {
         "name": "correct",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t11",
@@ -387,36 +288,24 @@
       },
       "data": {
         "name": "t11",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
       }
     },
     {
       "id": "t0",
       "type": "transition",
       "position": {
-        "x": 109.03301530946203,
-        "y": 349.7128724493028
+        "x": 110,
+        "y": 350
       },
       "data": {
         "name": "Fill out Enrollment Forms",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1",
@@ -427,7 +316,6 @@
       },
       "data": {
         "name": "Enroll in University",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -435,33 +323,21 @@
           "x": 81.74172306898981,
           "y": -38.32720359787345
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false
+      }
     },
     {
       "id": "t2",
       "type": "transition",
       "position": {
-        "x": 1160.758134689588,
-        "y": 448.5289928611092
+        "x": 1160,
+        "y": 450
       },
       "data": {
         "name": "Enroll in Seminars",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t3",
@@ -472,14 +348,9 @@
       },
       "data": {
         "name": "Attend Presentation",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
       }
     }
   ],
@@ -688,7 +559,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -278.83014447853276
       },
       "source": "t11",
       "sourceHandle": "source-right",
@@ -940,7 +812,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 78.00723544926177
       },
       "source": "t9",
       "sourceHandle": "source-right",
@@ -955,7 +828,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-31T14:08:59.465Z",
-    "name": "custom"
+    "timestamp": "2026-10-23T22:29:29.274Z",
+    "name": "student-enrollment"
   }
 }

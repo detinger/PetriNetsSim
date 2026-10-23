@@ -11,61 +11,42 @@
         "name": "Working",
         "tokens": 3,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -33.722424460574985,
           "y": -2.789521892555058
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1",
       "type": "transition",
       "position": {
-        "x": 427.39870743953315,
-        "y": 160.70892799096066
+        "x": 410,
+        "y": 160
       },
       "data": {
         "name": "Break",
-        "isEnabled": true,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "b",
       "type": "place",
       "position": {
-        "x": 563.5153683334132,
-        "y": 164.86690516675452
+        "x": 530,
+        "y": 160
       },
       "data": {
         "name": "Broken",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t2",
@@ -76,7 +57,6 @@
       },
       "data": {
         "name": "Repair",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -84,34 +64,22 @@
           "x": 41.72793868929148,
           "y": -75.63418666832149
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "r",
       "type": "place",
       "position": {
-        "x": 848.5785034443298,
-        "y": 333.50517561434134
+        "x": 870,
+        "y": 290
       },
       "data": {
         "name": "Rep_Idle",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": true,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     }
   ],
   "edges": [
@@ -153,7 +121,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 35.99724933958592
       },
       "source": "t2",
       "sourceHandle": "source-bottom",
@@ -171,7 +140,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 40.48133314189326
       },
       "source": "r",
       "sourceHandle": "source-top",
@@ -189,7 +159,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 41.500830829618195
       },
       "source": "w",
       "sourceHandle": "source-bottom",
@@ -207,7 +178,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 96.0422290712576
       },
       "source": "t2",
       "sourceHandle": "source-top",
@@ -222,7 +194,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-31T08:40:29.264Z",
+    "timestamp": "2026-10-23T22:38:21.456Z",
     "name": "machine-repair"
   }
 }

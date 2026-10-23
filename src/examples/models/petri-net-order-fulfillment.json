@@ -4,105 +4,75 @@
       "id": "p_r",
       "type": "place",
       "position": {
-        "x": 116.59002169197397,
-        "y": 250.8069414316703
+        "x": 120,
+        "y": 240
       },
       "data": {
         "name": "Received",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t1",
       "type": "transition",
       "position": {
-        "x": 250.67576841667062,
-        "y": 246.62802075027562
+        "x": 250,
+        "y": 240
       },
       "data": {
         "name": "Verify",
-        "isEnabled": true,
         "labelOffset": {
           "x": 0.8272058330476284,
           "y": -97.76194270234555
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "p_v",
       "type": "place",
       "position": {
-        "x": 387.55748373101954,
-        "y": 200
+        "x": 390,
+        "y": 190
       },
       "data": {
         "name": "Verified",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t2",
       "type": "transition",
       "position": {
-        "x": 546.8893709327548,
-        "y": 196.2195138186014
+        "x": 550,
+        "y": 190
       },
       "data": {
         "name": "Pack",
-        "isEnabled": false,
         "labelOffset": {
           "x": 0.35845586098730564,
           "y": -95.51470018923283
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "p_p",
       "type": "place",
       "position": {
         "x": 700,
-        "y": 200
+        "y": 190
       },
       "data": {
         "name": "Packed",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
+        "shapeWidth": 64,
+        "shapeHeight": 64
       }
     },
     {
@@ -114,60 +84,44 @@
       },
       "data": {
         "name": "Ship",
-        "isEnabled": false,
         "labelOffset": {
           "x": -1.3602940365672112,
           "y": -97.15532509144396
-        }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        },
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p_s",
       "type": "place",
       "position": {
-        "x": 981.3362255965292,
-        "y": 244.58568329718005
+        "x": 980,
+        "y": 240
       },
       "data": {
         "name": "Shipped",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p1774886120124",
       "type": "place",
       "position": {
-        "x": 530.8412241893138,
-        "y": 444.7956667891334
+        "x": 530,
+        "y": 440
       },
       "data": {
         "name": "Worker",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     }
   ],
   "edges": [
@@ -273,7 +227,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 19.76389885666852
       },
       "source": "p1774886120124",
       "sourceHandle": "source-left",
@@ -291,7 +246,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 23.699451793094823
       },
       "source": "t1",
       "sourceHandle": "source-right",
@@ -309,7 +265,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 20.097075364475515
       },
       "source": "p1774886120124",
       "sourceHandle": "source-top",
@@ -319,8 +276,7 @@
       "markerEnd": {
         "type": "arrowclosed",
         "color": "#2e3440"
-      },
-      "selected": false
+      }
     },
     {
       "type": "weighted",
@@ -328,7 +284,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 24.109848395792348
       },
       "source": "t2",
       "sourceHandle": "source-right",
@@ -346,7 +303,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 10.507885586951424
       },
       "source": "p1774886120124",
       "sourceHandle": "source-right",
@@ -364,7 +322,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 15.93027681561712
       },
       "source": "t3",
       "sourceHandle": "source-bottom",
@@ -379,7 +338,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-31T08:34:47.450Z",
+    "timestamp": "2026-10-23T22:34:26.351Z",
     "name": "order-fulfillment"
   }
 }

@@ -6,7 +6,7 @@ type Endpoint = InternalNode | Point;
 /** Perpendicular separation between two opposite arcs sharing the same node pair. */
 const PARALLEL_OFFSET = 8;
 /** Extra bow of the quadratic bezier on parallel arcs (pixels). */
-const PARALLEL_BOW = 10;
+export const PARALLEL_BOW = 10;
 /** Arrow marker length in canvas pixels — path is shortened so the marker tip lands on the outline. */
 const MARKER_LEN = 10;
 
@@ -56,23 +56,26 @@ function endpointAt(end: Endpoint, dir: Point): Point {
   return isNode(end) ? outlinePoint(end, dir) : end;
 }
 
-/** Straight line (or gentle bow for parallel pairs) from shape outline to shape outline. */
+/** Straight line, user-curved arc, or gentle bow for parallel pairs — from shape outline to shape outline. */
 export function arcPath({
   source,
   target,
   parallel = false,
+  curvature = 0,
 }: {
   source: Endpoint;
   target: Endpoint;
   parallel?: boolean;
+  curvature?: number;
 }) {
   const sc = centerOf(source);
   const tc = centerOf(target);
   const dir = normalize(tc.x - sc.x, tc.y - sc.y);
   const rev = { x: -dir.x, y: -dir.y };
 
+  const perp = { x: -dir.y, y: dir.x };
+
   if (parallel) {
-    const perp = { x: -dir.y, y: dir.x };
     // Raw offset from the cardinal outline point — may land off the shape surface.
     // Project back onto the actual outline so arcs always touch their shapes.
     const rawS = endpointAt(source, dir);
@@ -85,8 +88,9 @@ export function arcPath({
     const end = isNode(target)
       ? outlinePoint(target, normalize(rawEnd.x - tc.x, rawEnd.y - tc.y))
       : rawEnd;
-    const mx = (start.x + end.x) / 2 + perp.x * PARALLEL_BOW;
-    const my = (start.y + end.y) / 2 + perp.y * PARALLEL_BOW;
+    const bow = PARALLEL_BOW + curvature;
+    const mx = (start.x + end.x) / 2 + perp.x * bow;
+    const my = (start.y + end.y) / 2 + perp.y * bow;
     // Shorten the path end along the bezier's end tangent so marker tip (refX=0) lands on `end`
     const et = normalize(end.x - mx, end.y - my);
     const pathEnd = { x: end.x - MARKER_LEN * et.x, y: end.y - MARKER_LEN * et.y };
@@ -97,6 +101,17 @@ export function arcPath({
 
   const start = endpointAt(source, dir);
   const end   = endpointAt(target, rev);
+
+  if (curvature !== 0) {
+    const mx = (start.x + end.x) / 2 + perp.x * curvature;
+    const my = (start.y + end.y) / 2 + perp.y * curvature;
+    const et = normalize(end.x - mx, end.y - my);
+    const pathEnd = { x: end.x - MARKER_LEN * et.x, y: end.y - MARKER_LEN * et.y };
+    const labelX = (start.x + 2 * mx + end.x) / 4;
+    const labelY = (start.y + 2 * my + end.y) / 4;
+    return [`M ${start.x} ${start.y} Q ${mx} ${my} ${pathEnd.x} ${pathEnd.y}`, labelX, labelY, start, end] as const;
+  }
+
   // Shorten the line so the marker tip (refX=0) lands exactly on `end`
   const pathEndX = end.x - MARKER_LEN * dir.x;
   const pathEndY = end.y - MARKER_LEN * dir.y;

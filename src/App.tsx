@@ -476,6 +476,14 @@ function Editor() {
     [recordUndo, setEdges]
   );
 
+  const commitCurvature = useCallback(
+    (edgeId: string, curvature: number) => {
+      recordUndo('Curve arc', { key: `curvature:${edgeId}` });
+      setEdges((eds) => eds.map((e) => (e.id === edgeId ? { ...e, data: { ...e.data, curvature } } : e)));
+    },
+    [recordUndo, setEdges]
+  );
+
   /* ── Import / export ────────────────────────────────────────────────────── */
 
   const handleExport = () => {
@@ -669,6 +677,7 @@ function Editor() {
     editingEdgeId,
     setEditingEdgeId,
     commitWeight,
+    commitCurvature,
     recordUndo,
   };
 

@@ -4,26 +4,20 @@
       "id": "c_i",
       "type": "place",
       "position": {
-        "x": 129.0057463436291,
-        "y": -47.99391107676378
+        "x": 110,
+        "y": -40
       },
       "data": {
         "name": "Client_Idle",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -46.50275458116084,
           "y": -1.5992646105587482
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1",
@@ -33,34 +27,23 @@
         "y": 100
       },
       "data": {
-        "name": "Send_Req",
-        "isEnabled": true
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
+        "name": "Send_Req"
       }
     },
     {
       "id": "c_w",
       "type": "place",
       "position": {
-        "x": 398.5,
-        "y": 104
+        "x": 380,
+        "y": 100
       },
       "data": {
         "name": "Wait_Reply",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "n_q",
@@ -73,90 +56,64 @@
         "name": "Net_Req_Queue",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t2",
       "type": "transition",
       "position": {
-        "x": 156.5,
-        "y": 337
+        "x": 160,
+        "y": 330
       },
       "data": {
-        "name": "Start_Proc",
-        "isEnabled": false
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "name": "Start_Proc"
+      }
     },
     {
       "id": "s_i",
       "type": "place",
       "position": {
-        "x": 31.45694573311291,
-        "y": 497.90775225075186
+        "x": 20,
+        "y": 480
       },
       "data": {
         "name": "Server_Idle",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -43.49724005442113,
           "y": -79.69668642617762
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "s_p",
       "type": "place",
       "position": {
-        "x": 295,
-        "y": 339.5
+        "x": 300,
+        "y": 330
       },
       "data": {
         "name": "Processing",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t3",
       "type": "transition",
       "position": {
-        "x": 458.5,
-        "y": 335
+        "x": 480,
+        "y": 330
       },
       "data": {
         "name": "Send_Reply",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64,
@@ -164,13 +121,7 @@
           "x": 44.91727673448622,
           "y": 0.19761028233915567
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "n_r",
@@ -183,15 +134,9 @@
         "name": "Net_Reply_Queue",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t4",
@@ -202,14 +147,9 @@
       },
       "data": {
         "name": "Recv_Ok",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
       }
     }
   ],
@@ -336,7 +276,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 30.950417328800846
       },
       "source": "n_r",
       "sourceHandle": "source-top",
@@ -372,7 +313,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 54.9006994424572
       },
       "source": "t4",
       "sourceHandle": "source-top",
@@ -390,7 +332,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -27.210847133306338
       },
       "source": "s_i",
       "sourceHandle": "source-top",
@@ -408,7 +351,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -86.12495147412783
       },
       "source": "t3",
       "sourceHandle": "source-bottom",
@@ -423,7 +367,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-31T08:37:07.689Z",
+    "timestamp": "2026-10-23T22:36:49.009Z",
     "name": "client-server"
   }
 }

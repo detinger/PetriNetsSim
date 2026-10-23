@@ -4,147 +4,102 @@
       "id": "i",
       "type": "place",
       "position": {
-        "x": 127.51626898047724,
-        "y": 202.96312364425162
+        "x": 120,
+        "y": 200
       },
       "data": {
         "name": "Idle",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
-          "x": -0.5790440831333399,
-          "y": -80.54687019903213
+          "x": -1.2235753331333399,
+          "y": -91.62890144903213
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t1",
       "type": "transition",
       "position": {
-        "x": 275.9219088937093,
-        "y": 198.96312364425162
+        "x": 270,
+        "y": 200
       },
       "data": {
-        "name": "Coin_In",
-        "isEnabled": true
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "name": "Coin_In"
+      }
     },
     {
       "id": "c1",
       "type": "place",
       "position": {
-        "x": 385.1637744034707,
-        "y": 202.96312364425162
+        "x": 380,
+        "y": 200
       },
       "data": {
         "name": "1_Coin",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t2",
       "type": "transition",
       "position": {
-        "x": 526.1681127982646,
-        "y": 200.03687635574838
+        "x": 520,
+        "y": 200
       },
       "data": {
-        "name": "Coin_In",
-        "isEnabled": false
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "name": "Coin_In"
+      }
     },
     {
       "id": "c2",
       "type": "place",
       "position": {
-        "x": 648.8362255965293,
-        "y": 204.03687635574838
+        "x": 640,
+        "y": 200
       },
       "data": {
         "name": "2_Coins",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t3",
       "type": "transition",
       "position": {
-        "x": 786.6518438177874,
-        "y": 200.5
+        "x": 800,
+        "y": 200
       },
       "data": {
         "name": "Dispense",
-        "isEnabled": false,
         "labelOffset": {
           "x": 1.5349263790994883,
           "y": -93.71782529633492
         }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "d",
       "type": "place",
       "position": {
-        "x": 532.655097613883,
-        "y": 397.11062906724504
+        "x": 530,
+        "y": 390
       },
       "data": {
         "name": "Drink_Ready",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t4",
@@ -155,17 +110,10 @@
       },
       "data": {
         "name": "Collect",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     }
   ],
   "edges": [
@@ -271,7 +219,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -60.668352686103646
       },
       "source": "t4",
       "sourceHandle": "source-left",
@@ -289,7 +238,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -52.291932910005414
       },
       "source": "t3",
       "sourceHandle": "source-bottom",
@@ -304,7 +254,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-31T08:36:33.350Z",
+    "timestamp": "2026-10-23T22:40:40.205Z",
     "name": "vending-machine"
   }
 }

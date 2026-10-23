@@ -9,35 +9,25 @@
       },
       "data": {
         "name": "Arrival",
-        "isEnabled": true
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "q",
       "type": "place",
       "position": {
-        "x": 267,
-        "y": 153
+        "x": 260,
+        "y": 150
       },
       "data": {
         "name": "Queue",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t2",
@@ -48,38 +38,29 @@
       },
       "data": {
         "name": "Serve",
-        "isEnabled": false,
         "labelOffset": {
           "x": -0.11029411107301712,
           "y": -93.27205326408148
-        }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false
+        },
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p_proc",
       "type": "place",
       "position": {
-        "x": 583.5,
-        "y": 155
+        "x": 570,
+        "y": 150
       },
       "data": {
         "name": "In_Proc",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t3",
@@ -90,18 +71,14 @@
       },
       "data": {
         "name": "Complete",
-        "isEnabled": false,
         "labelOffset": {
           "x": -3.3088233321905136,
           "y": -96.56249424442649
-        }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        },
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "s",
@@ -114,15 +91,9 @@
         "name": "Server_Idle",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     }
   ],
   "edges": [
@@ -196,7 +167,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -72.65993634074397
       },
       "source": "t3",
       "sourceHandle": "source-bottom",
@@ -214,7 +186,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -51.52938527226389
       },
       "source": "s",
       "sourceHandle": "source-top",
@@ -229,7 +202,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-30T16:09:30.032Z",
+    "timestamp": "2026-10-23T22:27:18.733Z",
     "name": "service-queue"
   }
 }

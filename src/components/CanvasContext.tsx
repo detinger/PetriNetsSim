@@ -31,6 +31,7 @@ export interface CanvasContextValue {
   editingEdgeId: string | null;
   setEditingEdgeId: (id: string | null) => void;
   commitWeight: (edgeId: string, weight: number) => void;
+  commitCurvature: (edgeId: string, curvature: number) => void;
   recordUndo: (label: string, options?: UndoOptions) => void;
 }
 
@@ -49,6 +50,7 @@ export const CanvasContext = createContext<CanvasContextValue>({
   editingEdgeId: null,
   setEditingEdgeId: noop,
   commitWeight: noop,
+  commitCurvature: noop,
   recordUndo: noop,
 });
 

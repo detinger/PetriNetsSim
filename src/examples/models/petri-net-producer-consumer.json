@@ -4,19 +4,16 @@
       "id": "p1",
       "type": "place",
       "position": {
-        "x": 108,
-        "y": 415
+        "x": 100,
+        "y": 410
       },
       "data": {
         "name": "p_ready",
-        "tokens": 1
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "tokens": 1,
+        "shapeType": "circle",
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t1",
@@ -27,56 +24,44 @@
       },
       "data": {
         "name": "t_produce",
-        "isEnabled": true,
         "labelOffset": {
           "x": -49.995401431806386,
           "y": -70.51010609138757
-        }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false
+        },
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p2",
       "type": "place",
       "position": {
-        "x": 350,
-        "y": 158.5
+        "x": 370,
+        "y": 160
       },
       "data": {
         "name": "p_buffer",
-        "tokens": 4
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "tokens": 4,
+        "shapeType": "circle",
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p3",
       "type": "place",
       "position": {
-        "x": 420,
-        "y": 418.5
+        "x": 370,
+        "y": 410
       },
       "data": {
         "name": "p_items",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": true,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t2",
@@ -87,39 +72,33 @@
       },
       "data": {
         "name": "t_consume",
-        "isEnabled": true,
         "labelOffset": {
           "x": 51.38326899614185,
           "y": -23.226101556792855
-        }
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false
+        },
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p4",
       "type": "place",
       "position": {
-        "x": 652.5,
-        "y": 162
+        "x": 670,
+        "y": 160
       },
       "data": {
         "name": "p_cons_rdy",
         "tokens": 1,
         "labelOffset": {
-          "x": 0.914522004313767,
-          "y": -80.45036285184324
-        }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+          "x": 1.543428254313767,
+          "y": -87.65739410184324
+        },
+        "shapeType": "circle",
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     }
   ],
   "edges": [
@@ -161,7 +140,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 26.354656252591568
       },
       "source": "p4",
       "sourceHandle": "source-left",
@@ -179,7 +159,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 28.01984108046929
       },
       "source": "t2",
       "sourceHandle": "source-right",
@@ -197,7 +178,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 26.551430238740764
       },
       "source": "t1",
       "sourceHandle": "source-left",
@@ -215,7 +197,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 20.778279545061658
       },
       "source": "p1",
       "sourceHandle": "source-right",
@@ -266,7 +249,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-30T16:17:55.183Z",
+    "timestamp": "2026-10-23T22:25:08.117Z",
     "name": "producer-consumer"
   }
 }

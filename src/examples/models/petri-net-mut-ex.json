@@ -11,61 +11,43 @@
         "name": "P1_Idle",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -46.24080606736243,
           "y": -5.128676164895296
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false
+      }
     },
     {
       "id": "t1",
       "type": "transition",
       "position": {
-        "x": 283,
-        "y": 215
+        "x": 290,
+        "y": 210
       },
       "data": {
-        "name": "P1_Enter",
-        "isEnabled": true
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "name": "P1_Enter"
+      }
     },
     {
       "id": "p2",
       "type": "place",
       "position": {
-        "x": 183,
-        "y": 364.5
+        "x": 180,
+        "y": 340
       },
       "data": {
         "name": "P1_CS",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
-          "x": 39.522056467831135,
-          "y": -66.60845191217959
+          "x": 46.584556467831135,
+          "y": -68.16704566217959
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t2",
@@ -75,36 +57,23 @@
         "y": 476
       },
       "data": {
-        "name": "P1_Exit",
-        "isEnabled": false
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "name": "P1_Exit"
+      }
     },
     {
       "id": "mutex",
       "type": "place",
       "position": {
-        "x": 401.5,
-        "y": 336
+        "x": 400,
+        "y": 340
       },
       "data": {
         "name": "Mutex",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p4",
@@ -117,62 +86,46 @@
         "name": "P2_Idle",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 45.2435634797439,
           "y": -7.21507309935987
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t3",
       "type": "transition",
       "position": {
-        "x": 549,
-        "y": 214
+        "x": 560,
+        "y": 210
       },
       "data": {
         "name": "P2_Enter",
-        "isEnabled": true
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "shapeType": "rect",
+        "shapeWidth": 24,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "p5",
       "type": "place",
       "position": {
-        "x": 626.5,
-        "y": 346
+        "x": 620,
+        "y": 340
       },
       "data": {
         "name": "P2_CS",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
-          "x": -48.9705853164196,
-          "y": -54.701283504255116
+          "x": -62.0330853164196,
+          "y": -56.420033504255116
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t4",
@@ -183,17 +136,10 @@
       },
       "data": {
         "name": "P2_Exit",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+      }
     }
   ],
   "edges": [
@@ -226,7 +172,7 @@
       },
       "data": {
         "weight": 1,
-        "curvature": 0.3
+        "curvature": 46.38429388111993
       }
     },
     {
@@ -258,7 +204,7 @@
       },
       "data": {
         "weight": 1,
-        "curvature": 0.3
+        "curvature": -48.63311262073656
       }
     },
     {
@@ -321,7 +267,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -43.64029838375119
       },
       "source": "t2",
       "sourceHandle": "source-top",
@@ -357,7 +304,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": 45.00736492011353
       },
       "source": "t4",
       "sourceHandle": "source-top",
@@ -408,7 +356,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-30T16:15:26.603Z",
+    "timestamp": "2026-10-23T22:39:34.989Z",
     "name": "mut-ex"
   }
 }

@@ -11,36 +11,24 @@
         "name": "Draft",
         "tokens": 1,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": 0.8731617126613855,
           "y": -82.85385535564274
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false
+      }
     },
     {
       "id": "t1",
       "type": "transition",
       "position": {
-        "x": 284.81482543648104,
-        "y": 245.708591742269
+        "x": 290,
+        "y": 250
       },
       "data": {
-        "name": "Submit",
-        "isEnabled": true
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
-      },
-      "selected": false,
-      "dragging": false
+        "name": "Submit"
+      }
     },
     {
       "id": "p_a",
@@ -53,12 +41,8 @@
         "name": "Pending",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
+        "shapeWidth": 64,
+        "shapeHeight": 64
       }
     },
     {
@@ -69,34 +53,23 @@
         "y": 150
       },
       "data": {
-        "name": "Approve",
-        "isEnabled": false
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
+        "name": "Approve"
       }
     },
     {
       "id": "a_d",
       "type": "place",
       "position": {
-        "x": 799.1930585683297,
-        "y": 153.11062906724513
+        "x": 800,
+        "y": 150
       },
       "data": {
         "name": "Approved",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": true,
-      "dragging": false
+        "shapeWidth": 64,
+        "shapeHeight": 64
+      }
     },
     {
       "id": "t3",
@@ -106,38 +79,27 @@
         "y": 350
       },
       "data": {
-        "name": "Reject",
-        "isEnabled": false
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
+        "name": "Reject"
       }
     },
     {
       "id": "r_d",
       "type": "place",
       "position": {
-        "x": 798.1561822125814,
-        "y": 353.1106290672451
+        "x": 800,
+        "y": 350
       },
       "data": {
         "name": "Rejected",
         "tokens": 0,
         "shapeType": "circle",
-        "shapeWidth": 56,
-        "shapeHeight": 56,
+        "shapeWidth": 64,
+        "shapeHeight": 64,
         "labelOffset": {
           "x": -1.0937499348074198,
           "y": -84.98161258175969
         }
-      },
-      "measured": {
-        "width": 56,
-        "height": 56
-      },
-      "selected": false,
-      "dragging": false
+      }
     },
     {
       "id": "t4",
@@ -148,14 +110,9 @@
       },
       "data": {
         "name": "Revise",
-        "isEnabled": false,
         "shapeType": "rect",
         "shapeWidth": 24,
         "shapeHeight": 64
-      },
-      "measured": {
-        "width": 24,
-        "height": 64
       }
     }
   ],
@@ -262,7 +219,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -79.89543795856407
       },
       "source": "r_d",
       "sourceHandle": "source-bottom",
@@ -280,7 +238,8 @@
         "strokeWidth": 3
       },
       "data": {
-        "weight": 1
+        "weight": 1,
+        "curvature": -96.7138473093533
       },
       "source": "t4",
       "sourceHandle": "source-left",
@@ -295,7 +254,7 @@
   ],
   "metadata": {
     "version": "1.0",
-    "timestamp": "2026-03-31T08:37:58.600Z",
+    "timestamp": "2026-10-23T22:37:35.039Z",
     "name": "doc-approval"
   }
 }
