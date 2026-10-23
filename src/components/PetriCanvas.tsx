@@ -1,8 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import {
   ReactFlow,
-  Background,
-  BackgroundVariant,
   Controls,
   ControlButton,
   MiniMap,
@@ -257,7 +255,6 @@ export default function PetriCanvas({
         data: { weight: 1 }
       }}
     >
-      <Background variant={BackgroundVariant.Dots} gap={20} size={1.5} />
       <Controls position="bottom-left" showInteractive={false}>
         <ControlButton
           onClick={onToggleMiniMap}

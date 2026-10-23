@@ -259,7 +259,7 @@ function Editor() {
 
   /* ── Simulation ─────────────────────────────────────────────────────────── */
 
-  const phaseMs = Math.min(300, Math.round(speed * 0.35));
+  const phaseMs = Math.min(Math.round(speed * 0.9), 1200);
 
   const cancelAnimation = useCallback(() => {
     timers.current.forEach((id) => window.clearTimeout(id));

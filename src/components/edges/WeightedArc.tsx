@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, useInternalNode } from '@xyflow/react';
 import { clsx } from 'clsx';
 import { arcPath } from '../../lib/arcGeometry';
@@ -40,10 +40,9 @@ export default function WeightedArc({
   const isFiring = firingEdgeIds.has(id);
 
   const markerId = `petri-arrow-${id.replace(/[^\w-]/g, '_')}`;
+  const motionPathId = `petri-motion-path-${id.replace(/[^\w-]/g, '_')}`;
 
-  // How many tokens to animate: capped at 4 to avoid clutter
   const tokenCount = Math.min(weight, 4);
-  // Stagger each token by 80ms
   const staggerMs = 80;
 
   return (
@@ -61,6 +60,8 @@ export default function WeightedArc({
         >
           <path d="M0 1 L10 5 L0 9 Z" className={clsx('petri-arc-arrow', isFiring && 'petri-arc-firing-arrow')} />
         </marker>
+        {/* Geometry-only path referenced by MovingToken via getPointAtLength */}
+        <path id={motionPathId} d={edgePath} fill="none" stroke="none" />
       </defs>
 
       <BaseEdge
@@ -78,26 +79,14 @@ export default function WeightedArc({
         </g>
       )}
 
-      {/* Animated tokens: one per weight (capped at 4), staggered */}
       {isFiring && Array.from({ length: tokenCount }).map((_, i) => (
-        <circle
+        <MovingToken
           key={`${firingKey}-${i}`}
-          r={i === 0 ? 6 : 4.5}
-          className="fill-accent stroke-net-fill"
-          strokeWidth={1.5}
-          style={{ filter: 'drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 80%, transparent))' }}
-        >
-          <animateMotion
-            dur={`${firingMs}ms`}
-            begin={`${i * staggerMs}ms`}
-            repeatCount="1"
-            path={edgePath}
-            fill="freeze"
-            calcMode="spline"
-            keyTimes="0;1"
-            keySplines="0.42 0 0.58 1"
-          />
-        </circle>
+          pathId={motionPathId}
+          r={i === 0 ? 10 : 7}
+          dur={firingMs}
+          delay={i * staggerMs}
+        />
       ))}
 
       {(showBadge || editing) && (
@@ -135,6 +124,55 @@ export default function WeightedArc({
         </EdgeLabelRenderer>
       )}
     </>
+  );
+}
+
+function MovingToken({ pathId, r, dur, delay }: { pathId: string; r: number; dur: number; delay: number }) {
+  const circleRef = useRef<SVGCircleElement>(null);
+
+  useEffect(() => {
+    const path = document.getElementById(pathId) as SVGPathElement | null;
+    if (!path) return;
+
+    const totalLength = path.getTotalLength();
+    let startTs: number | null = null;
+    let raf: number;
+
+    const tick = (ts: number) => {
+      if (startTs === null) startTs = ts;
+      const elapsed = ts - startTs - delay;
+      const circle = circleRef.current;
+      if (!circle) return;
+
+      if (elapsed < 0) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+
+      const t = Math.min(elapsed / dur, 1);
+      const pt = path.getPointAtLength(t * totalLength);
+      circle.setAttribute('cx', String(pt.x));
+      circle.setAttribute('cy', String(pt.y));
+      circle.setAttribute('visibility', 'visible');
+
+      if (t < 1) {
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [pathId, dur, delay]);
+
+  return (
+    <circle
+      ref={circleRef}
+      r={r}
+      visibility="hidden"
+      className="fill-accent stroke-net-fill"
+      strokeWidth={1.5}
+      style={{ filter: 'drop-shadow(0 0 4px color-mix(in srgb, var(--accent) 90%, transparent))' }}
+    />
   );
 }
 

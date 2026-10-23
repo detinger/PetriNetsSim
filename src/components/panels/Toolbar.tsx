@@ -3,8 +3,8 @@ import { Tooltip } from '../ui';
 import { MOD_KEY } from '../../lib/shortcuts';
 
 // Slider uses a two-segment logarithmic scale so 1× lands exactly at the midpoint (50):
-//   pos  0 → 0.1×   pos 25 → 0.316×   pos 50 → 1×   pos 75 → 2×   pos 100 → 4×
-// Left half  (0–50):  mult = 0.1 × 10^(pos/50)
+//   pos  0 → 0.25×   pos 25 → 0.5×   pos 50 → 1×   pos 75 → 2×   pos 100 → 4×
+// Left half  (0–50):  mult = 0.25 × 4^(pos/50)
 // Right half (50–100): mult = 1 × 4^((pos−50)/50)
 // Speed in ms = 800 / multiplier
 
@@ -13,14 +13,14 @@ const SLIDER_MAX = 100;
 
 function sliderToMs(pos: number): number {
   const mult = pos <= 50
-    ? 0.1 * Math.pow(10, pos / 50)
+    ? 0.25 * Math.pow(4, pos / 50)
     : Math.pow(4, (pos - 50) / 50);
   return Math.round(800 / mult);
 }
 
 function msToSlider(ms: number): number {
   const mult = 800 / ms;
-  if (mult <= 1) return (Math.log10(mult / 0.1) / Math.log10(10)) * 50;
+  if (mult <= 1) return (Math.log(mult / 0.25) / Math.log(4)) * 50;
   return 50 + (Math.log(mult) / Math.log(4)) * 50;
 }
 
@@ -178,8 +178,8 @@ export default function Toolbar({
             aria-label="Simulation speed"
             onChange={(e) => {
               let pos = Number(e.target.value);
-              // Snap to 1× (pos=50) within ±3 units
-              if (Math.abs(pos - 50) <= 3) pos = 50;
+              // Snap to 1× (pos=50) within ±5 units
+              if (Math.abs(pos - 50) <= 5) pos = 50;
               onSpeedChange(sliderToMs(pos));
             }}
           />

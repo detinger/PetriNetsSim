@@ -23,8 +23,8 @@ export default function PlaceNode({ id, data, selected }: { id: string; data: Ne
   useEffect(() => {
     updateNodeData(id, {
       shapeType: 'circle',
-      shapeWidth: 56,
-      shapeHeight: 56,
+      shapeWidth: 64,
+      shapeHeight: 64,
     });
   }, [id, updateNodeData]);
 
@@ -39,9 +39,9 @@ export default function PlaceNode({ id, data, selected }: { id: string; data: Ne
     }
 
     return (
-      <div key={popKey ?? 'n'} className={clsx('flex flex-wrap items-center justify-center gap-1 max-w-[36px] min-h-[14px]', popKey != null && 'petri-token-pop')}>
+      <div key={popKey ?? 'n'} className={clsx('flex flex-wrap items-center justify-center gap-1.5 max-w-[44px] min-h-[15px]', popKey != null && 'petri-token-pop')}>
         {Array.from({ length: tokens }).map((_, i) => (
-          <div key={i} className="w-2.5 h-2.5 bg-net-stroke rounded-full shrink-0" />
+          <div key={i} className="w-[15px] h-[15px] bg-net-stroke rounded-full shrink-0" />
         ))}
       </div>
     );
@@ -55,7 +55,7 @@ export default function PlaceNode({ id, data, selected }: { id: string; data: Ne
       <div className="flex flex-col items-center justify-center gap-1">
         <div
           className={clsx(
-            'petri-shape relative w-14 h-14 rounded-full border-2 flex items-center justify-center bg-net-fill transition-[border-color,box-shadow,opacity] duration-[120ms]',
+            'petri-shape relative w-16 h-16 rounded-full border-2 flex items-center justify-center bg-net-fill transition-[border-color,box-shadow,opacity] duration-[120ms]',
             selected ? 'border-primary shadow-focus' : 'border-net-stroke'
           )}
           role="img"
