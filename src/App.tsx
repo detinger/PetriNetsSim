@@ -14,6 +14,7 @@ import {
   Workflow,
 } from 'lucide-react';
 import PetriCanvas, { FIT_VIEW_OPTIONS } from './components/PetriCanvas';
+import InspectorResizer, { useInspectorWidth } from './components/InspectorResizer';
 import BrandMark from './components/BrandMark';
 import Toolbar from './components/panels/Toolbar';
 import SimulationOverlay from './components/SimulationOverlay';
@@ -101,6 +102,8 @@ function Editor() {
   const [selectedExampleId, setSelectedExampleId] = useState(examples[0].id);
   const [showInspector, setShowInspector] = useState(true);
   const [inspectorTab, setInspectorTab] = useState<InspectorTab>('properties');
+  const { setWidth: setInspectorWidth, style: inspectorWidthStyle } = useInspectorWidth();
+  const inspectorRef = useRef<HTMLElement>(null);
   const [showMiniMap, setShowMiniMap] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
@@ -767,7 +770,7 @@ function Editor() {
       />
 
       <CanvasContext.Provider value={canvasContext}>
-        <main className={showInspector ? 'workspace' : 'workspace workspace-full'}>
+        <main className={showInspector ? 'workspace' : 'workspace workspace-full'} style={inspectorWidthStyle}>
           <section id="canvas" tabIndex={-1} aria-label="Petri net canvas" className="relative min-h-0 min-w-0 bg-canvas outline-none focus-visible:shadow-none">
             <PetriCanvas
               nodes={nodes}
@@ -826,7 +829,8 @@ function Editor() {
           </section>
 
           {showInspector && (
-            <aside className="inspector" aria-label="Inspector">
+            <aside ref={inspectorRef} className="inspector" aria-label="Inspector">
+              <InspectorResizer panelRef={inspectorRef} setWidth={setInspectorWidth} />
               <div className="tabs px-3" role="tablist" aria-label="Inspector views">
                 {inspectorTabs.map(({ id, label, icon: Icon }) => (
                   <button
